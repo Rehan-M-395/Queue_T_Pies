@@ -167,19 +167,39 @@ async function requireSession(req, res, next) {
   }
 }
 
-app.get('/api/health', (_req, res) => res.json({
-  ok: true,
-  resumeStorageConfigured: Boolean(supabase),
-  resumeBucketReady,
-  githubConfigured: Boolean(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET && process.env.GITHUB_TOKEN_ENCRYPTION_KEY),
-}))
-
 function githubEncryptionKey() {
   const configured = process.env.GITHUB_TOKEN_ENCRYPTION_KEY || ''
   const key = /^[\da-f]{64}$/i.test(configured) ? Buffer.from(configured, 'hex') : Buffer.from(configured, 'base64')
   if (key.length !== 32) throw new Error('GitHub token encryption is not configured.')
   return key
 }
+
+app.get('/api/health', (_req, res) => {
+  const tokenEncryptionKeyPresent = Boolean(process.env.GITHUB_TOKEN_ENCRYPTION_KEY)
+  let tokenEncryptionKeyValid = false
+  if (tokenEncryptionKeyPresent) {
+    try {
+      githubEncryptionKey()
+      tokenEncryptionKeyValid = true
+    } catch {
+      // Health checks expose configuration status only, never credential values.
+    }
+  }
+
+  return res.json({
+    ok: true,
+    resumeStorageConfigured: Boolean(supabase),
+    resumeBucketReady,
+    githubConfigured: Boolean(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET && process.env.GITHUB_TOKEN_ENCRYPTION_KEY),
+    githubConfig: {
+      clientIdPresent: Boolean(process.env.GITHUB_CLIENT_ID),
+      clientSecretPresent: Boolean(process.env.GITHUB_CLIENT_SECRET),
+      tokenEncryptionKeyPresent,
+      tokenEncryptionKeyValid,
+      callbackUrlPresent: Boolean(process.env.GITHUB_CALLBACK_URL),
+    },
+  })
+})
 
 function encryptGitHubTokens(tokens, userId, githubUserId) {
   const iv = randomBytes(12)
