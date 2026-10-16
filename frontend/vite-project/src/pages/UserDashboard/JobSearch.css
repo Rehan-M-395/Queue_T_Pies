@@ -15,7 +15,8 @@
 .job-card-top{display:flex;align-items:center;gap:10px;min-width:0}
 .job-company-logo,.job-company-placeholder{display:grid;width:38px;height:38px;flex:none;place-items:center;border:1px solid #303a31;border-radius:4px;background:#1a241b;color:#b9d1b6;object-fit:contain}
 .job-title-group{min-width:0;flex:1}
-.job-title-group h3{overflow:hidden;margin:0;color:#e9eee7;font-size:12px;font-weight:650;text-overflow:ellipsis;white-space:nowrap}
+.job-title-open{display:block;max-width:100%;overflow:hidden;margin:0;padding:0;border:0;background:none;color:#e9eee7;font:inherit;font-size:12px;font-weight:650;text-align:left;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+.job-title-open:hover{color:#b9d5b7;text-decoration:underline;text-underline-offset:2px}
 .job-title-group p{margin:4px 0 0;color:#9ba69a;font-size:10px}
 .job-location-badge{max-width:135px;padding:5px 7px;border-radius:10px;background:#1d2b1e;color:#b9d5b7;font-size:8px;text-align:center}
 .job-description{display:-webkit-box;overflow:hidden;min-height:45px;margin:13px 0 12px;color:#b0b8af;font-size:10px;line-height:1.55;-webkit-box-orient:vertical;-webkit-line-clamp:3}
@@ -33,6 +34,8 @@
 .job-card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:13px;padding-top:10px;border-top:1px solid #242b25}
 .job-apply-link{padding:7px 10px;border-radius:3px;background:#3b5a3d;color:white;font-size:9px;font-weight:650;text-decoration:none}
 .job-apply-link:hover{background:#4b6b4b}
+.job-view-details{padding:7px 10px;border:1px solid #354036;border-radius:3px;background:#1b211b;color:#cbd6c8;font-size:9px;cursor:pointer}
+.job-view-details:hover{background:#273327;color:#fff}
 .job-source-link,.jobs-attribution a{color:#9eaf9b;font-size:9px;text-decoration:underline;text-underline-offset:2px}
 .jobs-state{padding:28px 16px;border:1px dashed #303a31;border-radius:4px;color:#aab3a8;font-size:11px;text-align:center}
 .jobs-error{color:#efb3a6}

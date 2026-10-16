@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import { apiRequest } from '../../api'
+import JobDetails from './JobDetails'
+import { SkillBadges } from './JobSkills'
+import { extractJobSkills } from './jobSkillUtils'
 import './JobSearch.css'
 
 export default function JobSearch() {
@@ -9,6 +12,7 @@ export default function JobSearch() {
   const [hasMore, setHasMore] = useState(false)
   const [totalCount, setTotalCount] = useState(0)
   const [loadedCount, setLoadedCount] = useState(0)
+  const [selectedJob, setSelectedJob] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -50,6 +54,8 @@ export default function JobSearch() {
     setFilters((current) => ({ ...current, page }))
   }
 
+  if (selectedJob) return <JobDetails job={selectedJob} onBack={() => setSelectedJob(null)} />
+
   return (
     <div className="job-search">
       <header className="jobs-heading">
@@ -72,21 +78,25 @@ export default function JobSearch() {
       {!loading && !error && jobs.length === 0 && <div className="jobs-state">No matching jobs found. Try another keyword or filter.</div>}
 
       {!loading && !error && jobs.length > 0 && <div className="job-list">
-        {jobs.map((job) => <article className="job-card" key={job.id}>
+        {jobs.map((job) => {
+          const skills = extractJobSkills(job)
+          return <article className="job-card" key={job.id}>
           <div className="job-card-top">
             {job.companyLogo ? <img className="job-company-logo" src={job.companyLogo} alt="" loading="lazy" onError={(event) => { event.currentTarget.style.visibility = 'hidden' }} /> : <div className="job-company-placeholder" aria-hidden="true">{job.companyName?.charAt(0) || '?'}</div>}
-            <div className="job-title-group"><h3>{job.title}</h3><p>{job.companyName}</p></div>
+            <div className="job-title-group"><button className="job-title-open" type="button" onClick={() => setSelectedJob(job)}>{job.title}</button><p>{job.companyName}</p></div>
             <span className="job-location-badge">{job.location || 'Location not listed'}</span>
           </div>
           <p className="job-description">{job.description || 'View the original listing for role details.'}</p>
           {job.description && <details className="job-description-detail"><summary>Read full job description</summary><p>{job.description}</p></details>}
-          {job.requiredSkills && <div className="job-role-areas"><h4>Required skills &amp; education</h4><p>{job.requiredSkills}</p></div>}
+          {(skills.length > 0 || job.requiredSkills) && <div className="job-role-areas"><h4>Skills mentioned in listing</h4><SkillBadges skills={skills} />{job.requiredSkills && <details className="job-skills-source"><summary>Original skills and education text</summary><p>{job.requiredSkills}</p></details>}</div>}
           <div className="job-tags">{job.jobType && <span>{job.jobType}</span>}{job.experience && <span>{job.experience}</span>}{job.postedDate && <span>Posted {job.postedDate}</span>}</div>
           <footer className="job-card-footer">
+            <button className="job-view-details" type="button" onClick={() => setSelectedJob(job)}>View details</button>
             {job.applicationUrl ? <a href={job.applicationUrl} target="_blank" rel="noreferrer" className="job-apply-link">Apply Now <span aria-hidden="true">↗</span></a> : <span className="job-no-apply">Application link not provided</span>}
             <span className="job-source-link">Source: IndianAPI</span>
           </footer>
-        </article>)}
+        </article>
+        })}
       </div>}
 
       {!loading && !error && jobs.length > 0 && <nav className="jobs-pagination" aria-label="Job search pages">

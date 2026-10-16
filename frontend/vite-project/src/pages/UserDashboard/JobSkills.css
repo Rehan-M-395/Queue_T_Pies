@@ -1,0 +1,8 @@
+.job-skill-badges{display:flex;flex-wrap:wrap;gap:6px}
+.job-skill-badge{padding:5px 8px;border:1px solid #456248;border-radius:3px;background:#203023;color:#d7ecd3;font-size:9px;font-weight:650}
+.job-skills-empty{color:#909a8e;font-size:9px}
+.required-skill-highlight{padding:0 2px;border-radius:2px;background:#d7e89a;color:#182416;font-weight:750;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.job-skills-source{margin:10px 0 0;color:#a9b4a7;font-size:9px;line-height:1.6;white-space:pre-wrap}
+.job-skills-source summary{width:fit-content;color:#9eaf9b;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.job-skills-source p{margin:8px 0 0;color:#aab3a8;font-size:9px;line-height:1.6;white-space:pre-wrap}
+.job-role-areas .job-skills-source{padding-top:8px;border-top:1px solid #263128}
