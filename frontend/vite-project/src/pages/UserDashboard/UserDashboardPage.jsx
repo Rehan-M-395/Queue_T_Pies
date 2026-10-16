@@ -4,9 +4,10 @@ import { Brand } from '../../components/Brand'
 import { useAuth } from '../../hooks/useAuth'
 import JobSearch from './JobSearch'
 import ResumeManager from './ResumeManager'
+import GitHubAnalysis from './GitHubAnalysis'
 
 export default function UserDashboardPage() {
-  const [activeSection, setActiveSection] = useState('Home')
+  const [activeSection, setActiveSection] = useState(() => new URLSearchParams(window.location.search).has('github') ? 'GitHub Analysis' : 'Home')
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [logoutError, setLogoutError] = useState('')
   const { user, signOut } = useAuth()
@@ -42,6 +43,9 @@ export default function UserDashboardPage() {
           <button className={activeSection === 'Edit profile' ? 'active' : ''} onClick={() => setActiveSection('Edit profile')} aria-current={activeSection === 'Edit profile' ? 'page' : undefined}>
             <span className="sidebar-icon" aria-hidden="true">◉</span><span className="sidebar-nav-label">Edit profile</span>
           </button>
+          <button className={activeSection === 'GitHub Analysis' ? 'active' : ''} onClick={() => setActiveSection('GitHub Analysis')} aria-current={activeSection === 'GitHub Analysis' ? 'page' : undefined}>
+            <span className="sidebar-icon" aria-hidden="true">⌘</span><span className="sidebar-nav-label">GitHub Analysis</span>
+          </button>
         </nav>
         <div className="sidebar-account">
           <div className="account-avatar" aria-hidden="true">{user?.name?.charAt(0)?.toUpperCase() || 'U'}</div>
@@ -54,6 +58,7 @@ export default function UserDashboardPage() {
         {activeSection === 'Home' && <JobSearch />}
         {activeSection === 'Resume' && <ResumeManager />}
         {activeSection === 'Edit profile' && <div className="profile-placeholder">Profile editing will be available here.</div>}
+        {activeSection === 'GitHub Analysis' && <GitHubAnalysis />}
       </section>
     </main>
   )

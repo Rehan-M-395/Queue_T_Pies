@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import { randomUUID, timingSafeEqual } from 'node:crypto'
+import { createCipheriv, createDecipheriv, createHash, createHmac, randomBytes, randomUUID, timingSafeEqual } from 'node:crypto'
 import bcrypt from 'bcryptjs'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
@@ -47,7 +47,12 @@ const indianApiCacheTtlMs = 5 * 60 * 1000
 let indianApiCache
 
 app.use(cors({ origin: frontendOrigin, credentials: true }))
-app.use(express.json({ limit: '20kb' }))
+app.use((req, res, next) => {
+  const parser = req.path === '/api/github/webhook' && req.method === 'POST'
+    ? express.raw({ type: 'application/json', limit: '2mb' })
+    : express.json({ limit: '20kb' })
+  parser(req, res, next)
+})
 app.use(cookieParser())
 
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: 'draft-8', legacyHeaders: false })
@@ -166,7 +171,197 @@ app.get('/api/health', (_req, res) => res.json({
   ok: true,
   resumeStorageConfigured: Boolean(supabase),
   resumeBucketReady,
+  githubConfigured: Boolean(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET && process.env.GITHUB_TOKEN_ENCRYPTION_KEY),
 }))
+
+function githubEncryptionKey() {
+  const configured = process.env.GITHUB_TOKEN_ENCRYPTION_KEY || ''
+  const key = /^[\da-f]{64}$/i.test(configured) ? Buffer.from(configured, 'hex') : Buffer.from(configured, 'base64')
+  if (key.length !== 32) throw new Error('GitHub token encryption is not configured.')
+  return key
+}
+
+function encryptGitHubTokens(tokens, userId, githubUserId) {
+  const iv = randomBytes(12)
+  const cipher = createCipheriv('aes-256-gcm', githubEncryptionKey(), iv)
+  cipher.setAAD(Buffer.from(`${userId}:${githubUserId}`))
+  const ciphertext = Buffer.concat([cipher.update(JSON.stringify(tokens), 'utf8'), cipher.final()])
+  return { ciphertext, iv, authTag: cipher.getAuthTag() }
+}
+
+function decryptGitHubTokens(row) {
+  const decipher = createDecipheriv('aes-256-gcm', githubEncryptionKey(), row.token_iv)
+  decipher.setAAD(Buffer.from(`${row.user_id}:${row.github_user_id}`))
+  decipher.setAuthTag(row.token_auth_tag)
+  return JSON.parse(Buffer.concat([decipher.update(row.token_ciphertext), decipher.final()]).toString('utf8'))
+}
+
+function githubConfigured(res) {
+  if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET || !process.env.GITHUB_CALLBACK_URL) {
+    res.status(503).json({ error: 'GitHub OAuth is not configured on the server.' })
+    return false
+  }
+  return true
+}
+
+app.post('/api/github/oauth/start', requireTrustedOrigin, requireSession, async (req, res, next) => {
+  try {
+    if (!githubConfigured(res)) return
+    githubEncryptionKey()
+    const rawState = randomBytes(32).toString('base64url')
+    const stateHash = createHash('sha256').update(rawState).digest('hex')
+    await pool.query('DELETE FROM public.github_oauth_states WHERE expires_at <= NOW()')
+    await pool.query('INSERT INTO public.github_oauth_states (state_hash, user_id, expires_at) VALUES ($1, $2, NOW() + INTERVAL \'10 minutes\')', [stateHash, req.user.id])
+    const authorize = new URL('https://github.com/login/oauth/authorize')
+    authorize.searchParams.set('client_id', process.env.GITHUB_CLIENT_ID)
+    authorize.searchParams.set('redirect_uri', process.env.GITHUB_CALLBACK_URL)
+    authorize.searchParams.set('state', rawState)
+    authorize.searchParams.set('allow_signup', 'true')
+    return res.json({ authorizationUrl: authorize.toString() })
+  } catch (error) { return next(error) }
+})
+
+app.get('/api/github/callback', async (req, res) => {
+  const redirect = new URL('/dashboard', frontendOrigin)
+  const fail = (code) => { redirect.searchParams.set('github', code); return res.redirect(302, redirect.toString()) }
+  if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET || !process.env.GITHUB_CALLBACK_URL) return fail('not_configured')
+  const state = typeof req.query.state === 'string' ? req.query.state : ''
+  const code = typeof req.query.code === 'string' ? req.query.code : ''
+  if (!state || state.length > 200 || !code || code.length > 300) return fail('invalid_state')
+  try {
+    const stateHash = createHash('sha256').update(state).digest('hex')
+    const consumed = await pool.query('DELETE FROM public.github_oauth_states WHERE state_hash = $1 AND expires_at > NOW() RETURNING user_id', [stateHash])
+    const userId = consumed.rows[0]?.user_id
+    if (!userId) return fail('invalid_state')
+    const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
+      method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ client_id: process.env.GITHUB_CLIENT_ID, client_secret: process.env.GITHUB_CLIENT_SECRET, code, redirect_uri: process.env.GITHUB_CALLBACK_URL }),
+      signal: AbortSignal.timeout(12000),
+    })
+    const tokenData = await tokenResponse.json()
+    if (!tokenResponse.ok || !tokenData.access_token) return fail('token_exchange_failed')
+    const profileResponse = await fetch('https://api.github.com/user', {
+      headers: { Authorization: `Bearer ${tokenData.access_token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+      signal: AbortSignal.timeout(12000),
+    })
+    const profile = await profileResponse.json()
+    if (!profileResponse.ok || !profile.id || !profile.login) return fail('profile_failed')
+    const githubUserId = String(profile.id)
+    const encrypted = encryptGitHubTokens({ accessToken: tokenData.access_token, refreshToken: tokenData.refresh_token || null }, userId, githubUserId)
+    await pool.query(`INSERT INTO public.github_connections
+      (user_id, github_user_id, github_login, token_ciphertext, token_iv, token_auth_tag, token_expires_at, refresh_token_expires_at)
+      VALUES ($1, $2, $3, $4, $5, $6, CASE WHEN $7::bigint IS NULL THEN NULL ELSE NOW() + ($7::text || ' seconds')::interval END,
+        CASE WHEN $8::bigint IS NULL THEN NULL ELSE NOW() + ($8::text || ' seconds')::interval END)
+      ON CONFLICT (user_id) DO UPDATE SET github_user_id = EXCLUDED.github_user_id, github_login = EXCLUDED.github_login,
+        token_ciphertext = EXCLUDED.token_ciphertext, token_iv = EXCLUDED.token_iv, token_auth_tag = EXCLUDED.token_auth_tag,
+        token_expires_at = EXCLUDED.token_expires_at, refresh_token_expires_at = EXCLUDED.refresh_token_expires_at, updated_at = NOW()`,
+    [userId, githubUserId, profile.login, encrypted.ciphertext, encrypted.iv, encrypted.authTag, tokenData.expires_in || null, tokenData.refresh_token_expires_in || null])
+    redirect.searchParams.set('github', 'connected')
+    return res.redirect(302, redirect.toString())
+  } catch (error) {
+    console.error('GitHub OAuth callback failed:', error.message)
+    return fail('callback_failed')
+  }
+})
+
+async function getGitHubAccessToken(userId) {
+  const result = await pool.query('SELECT * FROM public.github_connections WHERE user_id = $1 LIMIT 1', [userId])
+  const row = result.rows[0]
+  if (!row) return null
+  let tokens
+  try { tokens = decryptGitHubTokens(row) } catch { throw new Error('GitHub connection could not be decrypted. Reconnect GitHub.') }
+  if (row.token_expires_at && new Date(row.token_expires_at).getTime() < Date.now() + 5 * 60 * 1000) {
+    if (!tokens.refreshToken || (row.refresh_token_expires_at && new Date(row.refresh_token_expires_at).getTime() <= Date.now())) throw new Error('GitHub session expired. Reconnect GitHub.')
+    const response = await fetch('https://github.com/login/oauth/access_token', {
+      method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ client_id: process.env.GITHUB_CLIENT_ID, client_secret: process.env.GITHUB_CLIENT_SECRET, grant_type: 'refresh_token', refresh_token: tokens.refreshToken }),
+      signal: AbortSignal.timeout(12000),
+    })
+    const refreshed = await response.json()
+    if (!response.ok || !refreshed.access_token) throw new Error('GitHub session expired. Reconnect GitHub.')
+    tokens = { accessToken: refreshed.access_token, refreshToken: refreshed.refresh_token || tokens.refreshToken }
+    const encrypted = encryptGitHubTokens(tokens, row.user_id, row.github_user_id)
+    await pool.query(`UPDATE public.github_connections SET token_ciphertext=$1, token_iv=$2, token_auth_tag=$3,
+      token_expires_at=NOW()+($4::text || ' seconds')::interval,
+      refresh_token_expires_at=CASE WHEN $5::bigint IS NULL THEN refresh_token_expires_at ELSE NOW()+($5::text || ' seconds')::interval END, updated_at=NOW()
+      WHERE user_id=$6`, [encrypted.ciphertext, encrypted.iv, encrypted.authTag, refreshed.expires_in || 28800, refreshed.refresh_token_expires_in || null, userId])
+  }
+  return { token: tokens.accessToken, login: row.github_login }
+}
+
+app.get('/api/github/status', requireSession, async (req, res, next) => {
+  try {
+    const result = await pool.query(`SELECT c.github_login, c.created_at,
+      (SELECT COUNT(*)::int FROM public.github_repositories r WHERE r.user_id=c.user_id AND r.selected=true) AS selected_count
+      FROM public.github_connections c WHERE c.user_id=$1`, [req.user.id])
+    const connection = result.rows[0]
+    return res.json({ connected: Boolean(connection), githubLogin: connection?.github_login || null, connectedAt: connection?.created_at || null, selectedCount: connection?.selected_count || 0 })
+  } catch (error) { return next(error) }
+})
+
+app.get('/api/github/repositories', requireSession, async (req, res) => {
+  try {
+    const connection = await getGitHubAccessToken(req.user.id)
+    if (!connection) return res.status(409).json({ error: 'Connect GitHub to see your repositories.' })
+    let pageUrl = 'https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member'
+    const repos = []
+    for (let page = 0; page < 10 && pageUrl; page += 1) {
+      const response = await fetch(pageUrl, { headers: { Authorization: `Bearer ${connection.token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }, signal: AbortSignal.timeout(15000) })
+      if (!response.ok) return res.status(response.status === 401 || response.status === 403 ? 502 : response.status).json({ error: 'GitHub could not list repositories. Reconnect or check the GitHub App permissions.' })
+      const data = await response.json()
+      if (!Array.isArray(data)) return res.status(502).json({ error: 'GitHub returned an unexpected repository response.' })
+      repos.push(...data)
+      const next = response.headers.get('link')?.split(',').find((item) => item.includes('rel="next"'))
+      pageUrl = next?.match(/<([^>]+)>/)?.[1] || ''
+    }
+    for (const repo of repos) {
+      await pool.query(`INSERT INTO public.github_repositories (user_id, repository_id, full_name, private, html_url, description, language, default_branch, pushed_at)
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) ON CONFLICT (user_id, repository_id) DO UPDATE SET
+        full_name=EXCLUDED.full_name, private=EXCLUDED.private, html_url=EXCLUDED.html_url, description=EXCLUDED.description,
+        language=EXCLUDED.language, default_branch=EXCLUDED.default_branch, pushed_at=EXCLUDED.pushed_at, synced_at=NOW()`,
+      [req.user.id, String(repo.id), repo.full_name, repo.private, repo.html_url, repo.description, repo.language, repo.default_branch, repo.pushed_at])
+    }
+    const saved = await pool.query(`SELECT repository_id::text AS id, full_name, private, html_url, description, language, default_branch, pushed_at, selected
+      FROM public.github_repositories WHERE user_id=$1 ORDER BY full_name`, [req.user.id])
+    return res.json({ githubLogin: connection.login, repositories: saved.rows })
+  } catch (error) {
+    return res.status(error.message.includes('GitHub session') || error.message.includes('decrypted') ? 401 : 500).json({ error: error.message.includes('GitHub session') || error.message.includes('decrypted') ? error.message : 'Could not load GitHub repositories. Please retry.' })
+  }
+})
+
+app.put('/api/github/repositories/selection', requireTrustedOrigin, requireSession, async (req, res) => {
+  const ids = req.body?.repositoryIds
+  if (!Array.isArray(ids) || ids.length > 200 || ids.some((id) => !/^\d{1,20}$/.test(String(id)))) return res.status(400).json({ error: 'Choose up to 200 valid repositories.' })
+  try {
+    const idStrings = [...new Set(ids.map(String))]
+    const found = await pool.query('SELECT repository_id::text FROM public.github_repositories WHERE user_id=$1 AND repository_id=ANY($2::bigint[])', [req.user.id, idStrings])
+    if (found.rowCount !== idStrings.length) return res.status(400).json({ error: 'One or more repositories are not connected to your account.' })
+    await pool.query('UPDATE public.github_repositories SET selected=(repository_id=ANY($2::bigint[])) WHERE user_id=$1', [req.user.id, idStrings])
+    return res.json({ ok: true, selectedCount: idStrings.length })
+  } catch { return res.status(500).json({ error: 'Could not save repository selection.' }) }
+})
+
+app.post('/api/github/webhook', async (req, res) => {
+  const secret = process.env.GITHUB_WEBHOOK_SECRET
+  if (!secret) return res.status(503).json({ error: 'GitHub webhook is not configured.' })
+  const signature = req.get('x-hub-signature-256') || ''
+  if (!Buffer.isBuffer(req.body) || !/^sha256=[\da-f]{64}$/i.test(signature)) return res.status(401).json({ error: 'Invalid webhook signature.' })
+  const expected = Buffer.from(`sha256=${createHmac('sha256', secret).update(req.body).digest('hex')}`)
+  const received = Buffer.from(signature)
+  if (expected.length !== received.length || !timingSafeEqual(expected, received)) return res.status(401).json({ error: 'Invalid webhook signature.' })
+  let payload
+  try { payload = JSON.parse(req.body.toString('utf8')) } catch { return res.status(400).json({ error: 'Invalid webhook payload.' }) }
+  if (req.get('x-github-event') !== 'push') return res.status(202).json({ received: true, queued: 0 })
+  const repoId = String(payload.repository?.id || '')
+  const deliveryId = req.get('x-github-delivery') || randomUUID()
+  if (!/^\d{1,20}$/.test(repoId)) return res.status(400).json({ error: 'Push event has no valid repository id.' })
+  try {
+    const result = await pool.query(`INSERT INTO public.github_analysis_refreshes (delivery_id,user_id,repository_id)
+      SELECT $1, user_id, repository_id FROM public.github_repositories WHERE repository_id=$2 AND selected=true
+      ON CONFLICT (delivery_id,user_id,repository_id) DO NOTHING`, [deliveryId, repoId])
+    return res.status(202).json({ received: true, queued: result.rowCount })
+  } catch { return res.status(500).json({ error: 'Could not enqueue repository refresh.' }) }
+})
 
 app.post('/api/auth/signup', requireTrustedOrigin, authLimiter, async (req, res, next) => {
   try {
