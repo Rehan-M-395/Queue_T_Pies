@@ -56,6 +56,7 @@ app.use((req, res, next) => {
 app.use(cookieParser())
 
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: 'draft-8', legacyHeaders: false })
+const aiChatLimiter = rateLimit({ windowMs: 60 * 1000, limit: 10, standardHeaders: 'draft-8', legacyHeaders: false })
 function requireTrustedOrigin(req, res, next) {
   const origin = req.get('origin')
   if (origin && origin !== frontendOrigin) return res.status(403).json({ error: 'Request origin is not allowed.' })
@@ -267,6 +268,11 @@ app.get('/api/github/callback', async (req, res) => {
     const profile = await profileResponse.json()
     if (!profileResponse.ok || !profile.id || !profile.login) return fail('profile_failed')
     const githubUserId = String(profile.id)
+    const existingLink = await pool.query(
+      'SELECT user_id FROM public.github_connections WHERE github_user_id=$1 AND user_id<>$2 LIMIT 1',
+      [githubUserId, userId],
+    )
+    if (existingLink.rowCount) return fail('github_already_linked')
     const encrypted = encryptGitHubTokens({ accessToken: tokenData.access_token, refreshToken: tokenData.refresh_token || null }, userId, githubUserId)
     await pool.query(`INSERT INTO public.github_connections
       (user_id, github_user_id, github_login, token_ciphertext, token_iv, token_auth_tag, token_expires_at, refresh_token_expires_at)
@@ -279,6 +285,7 @@ app.get('/api/github/callback', async (req, res) => {
     redirect.searchParams.set('github', 'connected')
     return res.redirect(302, redirect.toString())
   } catch (error) {
+    if (error.code === '23505') return fail('github_already_linked')
     console.error('GitHub OAuth callback failed:', error.message)
     return fail('callback_failed')
   }
@@ -309,7 +316,62 @@ async function getGitHubAccessToken(userId) {
   return { token: tokens.accessToken, login: row.github_login }
 }
 
+app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, async (req, res) => {
+  const message = typeof req.body?.message === 'string' ? req.body.message.trim() : ''
+  if (!message || message.length > 3000) return res.status(400).json({ error: 'Enter a message of up to 3,000 characters.' })
+  const history = req.body?.history
+  if (history !== undefined && (!Array.isArray(history) || history.length > 10 || history.some((item) =>
+    !item || !['user', 'assistant'].includes(item.role) || typeof item.content !== 'string' || item.content.length > 1500))) {
+    return res.status(400).json({ error: 'Chat history is invalid. Start a new conversation and try again.' })
+  }
+
+  try {
+    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8001')).replace(/\/$/, '')
+    if (!agentUrl) return res.status(503).json({ error: 'AI Analysis service is not configured on the backend.' })
+
+    const selectedResult = await pool.query(
+      'SELECT full_name FROM public.github_repositories WHERE user_id=$1 AND selected=true ORDER BY full_name LIMIT 100',
+      [req.user.id],
+    )
+    let selectedRepositories = selectedResult.rows.map((row) => row.full_name)
+    let githubConnection = null
+    if (selectedRepositories.length) githubConnection = await getGitHubAccessToken(req.user.id)
+    if (!githubConnection) selectedRepositories = []
+
+    const response = await fetch(`${agentUrl}/chat`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${getToken(req)}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: req.user.id,
+        message,
+        history: Array.isArray(history) ? history : [],
+        selected_repositories: selectedRepositories,
+        github_access_token: githubConnection?.token || null,
+      }),
+      signal: AbortSignal.timeout(95000),
+    })
+    const payload = await response.json().catch(() => ({}))
+    if (!response.ok) {
+      const status = [401, 403, 429, 503, 504].includes(response.status) ? response.status : 502
+      const message = typeof payload.detail === 'string' ? payload.detail : 'AI Analysis could not complete the request. Please retry.'
+      return res.status(status).json({ error: message })
+    }
+    if (typeof payload.answer !== 'string' || !payload.answer.trim()) return res.status(502).json({ error: 'The AI returned an empty response. Please retry.' })
+    return res.json({ answer: payload.answer, githubAvailable: Boolean(githubConnection && selectedRepositories.length), selectedRepositories })
+  } catch (error) {
+    if (error.message.includes('GitHub session') || error.message.includes('decrypted')) {
+      return res.status(401).json({ error: error.message })
+    }
+    if (error.name === 'TimeoutError' || error.name === 'AbortError') {
+      return res.status(504).json({ error: 'AI Analysis took too long. Please retry.' })
+    }
+    console.error('AI agent request failed:', error.message)
+    return res.status(502).json({ error: 'Could not reach AI Analysis. Please retry.' })
+  }
+})
+
 app.get('/api/github/status', requireSession, async (req, res, next) => {
+  res.set('Cache-Control', 'private, no-store')
   try {
     const result = await pool.query(`SELECT c.github_login, c.created_at,
       (SELECT COUNT(*)::int FROM public.github_repositories r WHERE r.user_id=c.user_id AND r.selected=true) AS selected_count
@@ -320,6 +382,7 @@ app.get('/api/github/status', requireSession, async (req, res, next) => {
 })
 
 app.get('/api/github/repositories', requireSession, async (req, res) => {
+  res.set('Cache-Control', 'private, no-store')
   try {
     const connection = await getGitHubAccessToken(req.user.id)
     if (!connection) return res.status(409).json({ error: 'Connect GitHub to see your repositories.' })

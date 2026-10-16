@@ -9,7 +9,11 @@ export default function GitHubAnalysis() {
   const [saving, setSaving] = useState(false)
   const [disconnecting, setDisconnecting] = useState(false)
   const [error, setError] = useState(() => new URLSearchParams(window.location.search).get('github') && new URLSearchParams(window.location.search).get('github') !== 'connected'
-    ? new URLSearchParams(window.location.search).get('github') === 'invalid_state' ? 'GitHub authorization expired or could not be validated. Please try again.' : 'GitHub authorization did not complete. Check the GitHub App configuration and retry.'
+    ? new URLSearchParams(window.location.search).get('github') === 'invalid_state'
+      ? 'GitHub authorization expired or could not be validated. Please try again.'
+      : new URLSearchParams(window.location.search).get('github') === 'github_already_linked'
+        ? 'This GitHub account is already linked to another Queue_T_Pies account. Sign in to that account or authorize a different GitHub account.'
+        : 'GitHub authorization did not complete. Check the GitHub App configuration and retry.'
     : '')
   const [notice, setNotice] = useState(() => new URLSearchParams(window.location.search).get('github') === 'connected' ? 'GitHub connected. Select repositories to analyze.' : '')
 

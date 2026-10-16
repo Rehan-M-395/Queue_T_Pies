@@ -1,0 +1,41 @@
+# Queue_T_Pies Python AI service
+
+This FastAPI service calls Groq's Responses API with GitHub's hosted read-only MCP server. It does
+not implement a second GitHub MCP server. The existing Node API remains the authenticated gateway:
+it verifies Queue_T_Pies sessions, resolves the user's linked GitHub token, and forwards the request
+to this service. FastAPI validates that same signed session before using the supplied user context.
+
+## Local setup
+
+From this folder, create and activate a virtual environment, then install requirements:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+Set `GROQ_API_KEY` and the same `JWT_SECRET` used by `backend/.env` in `python-backend/.env`.
+For local development, `main.py` also loads `backend/.env` as a fallback. Keep both files out of
+source control.
+
+Start FastAPI in one terminal:
+
+```powershell
+python -m uvicorn main:app --host 127.0.0.1 --port 8001 --app-dir .
+```
+
+Set `PYTHON_AGENT_URL=http://127.0.0.1:8001` in `backend/.env`, then start the existing Node API
+and Vite frontend as usual. The frontend calls Node only; it never receives Groq or GitHub tokens.
+
+## Deployment
+
+Deploy this as a private Python web service alongside the Node API:
+
+- Root directory: `python-backend`
+- Build command: `pip install -r requirements.txt`
+- Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+- Python service environment: `GROQ_API_KEY`, and the same `JWT_SECRET` as the Node API
+- Node service environment: `PYTHON_AGENT_URL` set to the Python service's private URL
+
+Never expose secrets in frontend environment variables or commit them.
