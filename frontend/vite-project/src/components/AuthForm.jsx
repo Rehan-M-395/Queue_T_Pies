@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { Arrow, BrandMark } from './Brand'
 
 export default function AuthForm({ mode, initialPortal = 'user' }) {
   const navigate = useNavigate()
-  const location = useLocation()
   const { signIn, signUp } = useAuth()
   const [portal, setPortal] = useState(initialPortal)
   const [email, setEmail] = useState('')
@@ -29,8 +28,7 @@ export default function AuthForm({ mode, initialPortal = 'user' }) {
         ? await signUp({ name, email, password })
         : await signIn({ email, password, portal })
       const destination = ['admin', 'hr'].includes(String(user.role).toLowerCase()) ? '/admin' : '/dashboard'
-      const requestedDestination = location.state?.from?.pathname
-      navigate(requestedDestination || destination, { replace: true })
+      navigate(destination, { replace: true })
     } catch (error) {
       setNotice(error.message)
     } finally {
