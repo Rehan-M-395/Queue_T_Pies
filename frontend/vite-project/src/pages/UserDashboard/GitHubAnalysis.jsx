@@ -7,6 +7,7 @@ export default function GitHubAnalysis() {
   const [repositories, setRepositories] = useState([])
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [disconnecting, setDisconnecting] = useState(false)
   const [error, setError] = useState(() => new URLSearchParams(window.location.search).get('github') && new URLSearchParams(window.location.search).get('github') !== 'connected'
     ? new URLSearchParams(window.location.search).get('github') === 'invalid_state' ? 'GitHub authorization expired or could not be validated. Please try again.' : 'GitHub authorization did not complete. Check the GitHub App configuration and retry.'
     : '')
@@ -63,6 +64,19 @@ export default function GitHubAnalysis() {
     finally { setSaving(false) }
   }
 
+  async function disconnectGitHub() {
+    setDisconnecting(true)
+    setError('')
+    setNotice('')
+    try {
+      await apiRequest('/api/github/connection', { method: 'DELETE' })
+      setStatus({ connected: false, githubLogin: null, selectedCount: 0 })
+      setRepositories([])
+      setNotice('GitHub disconnected from this Queue_T_Pies account. You can now connect the intended GitHub account.')
+    } catch (disconnectError) { setError(disconnectError.message || 'Could not disconnect GitHub.') }
+    finally { setDisconnecting(false) }
+  }
+
   return (
     <section className="github-analysis">
       <header className="github-heading">
@@ -80,7 +94,7 @@ export default function GitHubAnalysis() {
         </div>
       ) : (
         <>
-          <div className="github-connected-card"><span className="github-connected-dot"/><span>Connected as <strong>@{status.githubLogin}</strong></span><span className="github-selected-count">{repositories.filter((repo) => repo.selected).length} selected</span><button onClick={load}>Refresh</button></div>
+          <div className="github-connected-card"><span className="github-connected-dot"/><span>Connected as <strong>@{status.githubLogin}</strong></span><span className="github-selected-count">{repositories.filter((repo) => repo.selected).length} selected</span><button onClick={load}>Refresh</button><button className="github-disconnect" onClick={disconnectGitHub} disabled={disconnecting}>{disconnecting ? 'Disconnecting…' : 'Disconnect'}</button></div>
           <div className="github-repositories-heading"><div><h2>Your repositories</h2><p>Choose the repositories you want included in your analysis.</p></div><button className="github-primary" onClick={saveSelection} disabled={saving}>{saving ? 'Saving…' : 'Save selection'}</button></div>
           {repositories.length === 0 ? <div className="github-state">No accessible repositories were found for this GitHub account.</div> : (
             <ul className="github-repository-list">

@@ -361,6 +361,22 @@ app.put('/api/github/repositories/selection', requireTrustedOrigin, requireSessi
   } catch { return res.status(500).json({ error: 'Could not save repository selection.' }) }
 })
 
+app.delete('/api/github/connection', requireTrustedOrigin, requireSession, async (req, res) => {
+  const client = await pool.connect()
+  try {
+    await client.query('BEGIN')
+    await client.query('DELETE FROM public.github_analysis_refreshes WHERE user_id=$1', [req.user.id])
+    await client.query('DELETE FROM public.github_repositories WHERE user_id=$1', [req.user.id])
+    await client.query('DELETE FROM public.github_connections WHERE user_id=$1', [req.user.id])
+    await client.query('DELETE FROM public.github_oauth_states WHERE user_id=$1', [req.user.id])
+    await client.query('COMMIT')
+    return res.json({ ok: true })
+  } catch {
+    await client.query('ROLLBACK').catch(() => {})
+    return res.status(500).json({ error: 'Could not disconnect GitHub. Please try again.' })
+  } finally { client.release() }
+})
+
 app.post('/api/github/webhook', async (req, res) => {
   const secret = process.env.GITHUB_WEBHOOK_SECRET
   if (!secret) return res.status(503).json({ error: 'GitHub webhook is not configured.' })
