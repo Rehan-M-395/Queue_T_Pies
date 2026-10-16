@@ -16,6 +16,9 @@ dotenv.config({ path: resolve(dirname(fileURLToPath(import.meta.url)), '.env') }
 
 const { Pool } = pg
 const app = express()
+// Render's proxy forwards the client IP in X-Forwarded-For. Trust its single
+// proxy hop so express-rate-limit can identify clients correctly.
+app.set('trust proxy', 1)
 const port = Number(process.env.PORT || 4000)
 const jwtSecret = process.env.JWT_SECRET
 const frontendOrigin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173'
