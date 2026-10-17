@@ -1,16 +1,35 @@
-# React + Vite
+# Queue T Pies frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Deploy to Vercel
 
-Currently, two official plugins are available:
+Create a Vercel project for this repository and set **Root Directory** to
+`frontend/vite-project`. Use these build settings:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Framework preset: Vite
+- Install command: `npm install`
+- Build command: `npm run build`
+- Output directory: `dist`
 
-## React Compiler
+Set the `VITE_API_URL` environment variable for the Production environment to
+the public URL of the deployed API, for example
+`https://queue-t-pies.onrender.com`. Do not use `localhost` for a deployed
+frontend. The frontend currently defaults to that Render API URL when the
+variable is not set. Set the variable for Preview deployments too if those
+deployments should use the same API.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+`vercel.json` routes frontend paths to `index.html` so client-side routes also
+work when opened directly or refreshed. The API must allow requests from the
+deployed frontend origin, including credentialed requests used for sign-in.
 
-## Expanding the ESLint configuration
+## Run locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Install dependencies and start the Vite development server:
+
+```sh
+npm install
+npm run dev
+```
+
+For local development, leave `VITE_API_URL` empty to use the `/api` proxy in
+`vite.config.js`. The ignored `.env` file is local-only and is not used by
+Vercel.
