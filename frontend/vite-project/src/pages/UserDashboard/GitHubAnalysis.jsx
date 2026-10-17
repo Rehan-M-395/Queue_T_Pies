@@ -99,8 +99,8 @@ export default function GitHubAnalysis() {
       ) : (
         <>
           <div className="github-connected-card"><span className="github-connected-dot"/><span>Connected as <strong>@{status.githubLogin}</strong></span><span className="github-selected-count">{repositories.filter((repo) => repo.selected).length} selected</span><button onClick={load}>Refresh</button><button className="github-disconnect" onClick={disconnectGitHub} disabled={disconnecting}>{disconnecting ? 'Disconnecting…' : 'Disconnect'}</button></div>
-          <div className="github-repositories-heading"><div><h2>Your repositories</h2><p>Choose the repositories you want included in your analysis.</p></div><button className="github-primary" onClick={saveSelection} disabled={saving}>{saving ? 'Saving…' : 'Save selection'}</button></div>
-          {repositories.length === 0 ? <div className="github-state">No accessible repositories were found for this GitHub account.</div> : (
+          <div className="github-repositories-heading"><div><h2>Your public repositories</h2><p>Only public repositories are available for analysis. Choose which ones to include.</p></div><button className="github-primary" onClick={saveSelection} disabled={saving}>{saving ? 'Saving…' : 'Save selection'}</button></div>
+          {repositories.length === 0 ? <div className="github-state">No public repositories were found for this GitHub account.</div> : (
             <ul className="github-repository-list">
               {repositories.map((repo) => <li key={repo.id}>
                 <label className="github-repository">

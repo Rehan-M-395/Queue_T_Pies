@@ -245,7 +245,7 @@ function classifyGitHubQuestion(message) {
 }
 
 async function fetchAccessibleGitHubRepositories(accessToken) {
-  let pageUrl = 'https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member'
+  let pageUrl = 'https://api.github.com/user/repos?visibility=public&per_page=100&sort=updated&affiliation=owner,collaborator,organization_member'
   const repos = []
   let pageCount = 0
   let tokenScopes = null
@@ -272,6 +272,11 @@ async function fetchAccessibleGitHubRepositories(accessToken) {
   return { repositories: repos, tokenScopes }
 }
 
+async function fetchPublicGitHubRepositories(accessToken) {
+  const { repositories, tokenScopes } = await fetchAccessibleGitHubRepositories(accessToken)
+  return { ...publicRepositoriesOnly(repositories), tokenScopes }
+}
+
 async function verifyGitHubIdentity(accessToken, expectedLogin) {
   const response = await fetch('https://api.github.com/user', {
     headers: { Authorization: `Bearer ${accessToken}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
@@ -294,6 +299,11 @@ async function verifyGitHubIdentity(accessToken, expectedLogin) {
   const scopes = scopeHeader === null ? null : scopeHeader.split(',').map((scope) => scope.trim()).filter(Boolean)
   console.info(`GitHub token verified; account_match=true; oauth_scope_header=${scopes === null ? 'not-provided' : scopes.length ? scopes.join(',') : 'empty'}`)
   return { scopes }
+}
+
+function publicRepositoriesOnly(repositories) {
+  const accessible = repositories.filter((repo) => repo.private === false)
+  return { repositories: accessible, skippedCount: repositories.length - accessible.length }
 }
 
 async function saveGitHubRepositories(userId, repos) {
@@ -418,17 +428,22 @@ app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, as
       if (!githubConnection) return res.status(409).json({ error: 'Connect GitHub in GitHub Analysis before asking repository questions.' })
       await verifyGitHubIdentity(githubConnection.token, githubConnection.login)
       if (githubMode === 'list') {
-        const { repositories, tokenScopes } = await fetchAccessibleGitHubRepositories(githubConnection.token)
+        const { repositories, tokenScopes } = await fetchPublicGitHubRepositories(githubConnection.token)
         await saveGitHubRepositories(req.user.id, repositories)
         accessibleRepositories = repositories.map((repo) => repo.full_name).filter(Boolean)
         console.info(`GitHub repository inventory synced; count=${accessibleRepositories.length}; oauth_scope_header=${tokenScopes === null ? 'not-provided' : tokenScopes || 'empty'}`)
       } else {
+        const { repositories: publicRepositories } = await fetchPublicGitHubRepositories(githubConnection.token)
+        const publicNames = new Set(publicRepositories.map((repo) => repo.full_name))
+        await saveGitHubRepositories(req.user.id, publicRepositories)
         const selectedResult = await pool.query(
-          'SELECT full_name FROM public.github_repositories WHERE user_id=$1 AND selected=true ORDER BY full_name LIMIT 100',
+          'SELECT full_name FROM public.github_repositories WHERE user_id=$1 AND selected=true AND private=false ORDER BY full_name LIMIT 100',
           [req.user.id],
         )
-        selectedRepositories = selectedResult.rows.map((row) => row.full_name)
-        if (!selectedRepositories.length) return res.status(409).json({ error: 'Select and save at least one repository in GitHub Analysis before asking about code.' })
+        selectedRepositories = selectedResult.rows.map((row) => row.full_name).filter((name) => publicNames.has(name))
+        if (!selectedRepositories.length) {
+          return res.status(409).json({ error: 'Select and save at least one public repository in GitHub Analysis before asking about code.' })
+        }
       }
     }
 
@@ -492,22 +507,29 @@ app.post('/api/github/portfolio-analysis', requireTrustedOrigin, requireSession,
     const connection = await getGitHubAccessToken(req.user.id)
     if (!connection) return res.status(409).json({ error: 'Connect GitHub in GitHub Analysis before analyzing your portfolio.' })
     await verifyGitHubIdentity(connection.token, connection.login)
-    const repoResult = await pool.query(`SELECT full_name, html_url, default_branch
-      FROM public.github_repositories WHERE user_id=$1 AND selected=true ORDER BY full_name LIMIT 100`, [req.user.id])
-    if (!repoResult.rowCount) return res.status(409).json({ error: 'Select and save at least one repository in GitHub Analysis first.' })
-    if (repoResult.rowCount > 20) return res.status(422).json({ error: 'Select no more than 20 repositories for one portfolio assessment.' })
+    const { repositories: publicRepositories } = await fetchPublicGitHubRepositories(connection.token)
+    const publicNames = new Set(publicRepositories.map((repo) => repo.full_name))
+    await saveGitHubRepositories(req.user.id, publicRepositories)
+    const repoResult = await pool.query(`SELECT full_name, html_url, default_branch, private
+      FROM public.github_repositories WHERE user_id=$1 AND selected=true AND private=false ORDER BY full_name LIMIT 100`, [req.user.id])
+    const selectedPublicRepositories = repoResult.rows.filter((repo) => publicNames.has(repo.full_name))
+    if (!selectedPublicRepositories.length) return res.status(409).json({ error: 'Select and save at least one currently public repository in GitHub Analysis first.' })
+    if (selectedPublicRepositories.length > 20) return res.status(422).json({ error: 'Select no more than 20 repositories for one portfolio assessment.' })
     if (resumeId) {
       const ownedResume = await pool.query('SELECT id FROM public.resumes WHERE id=$1 AND user_id=$2 LIMIT 1', [resumeId, req.user.id])
       if (!ownedResume.rowCount) return res.status(400).json({ error: 'The selected resume does not belong to this account.' })
     }
-    const repositories = await Promise.all(repoResult.rows.map(async (repo) => {
+    const repositories = await Promise.all(selectedPublicRepositories.map(async (repo) => {
       const [owner, name] = repo.full_name.split('/')
       if (!owner || !name || !repo.default_branch) return { ...repo, head_sha: null }
       const headResponse = await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(name)}/commits/${encodeURIComponent(repo.default_branch)}`, {
         headers: { Accept: 'application/vnd.github+json', Authorization: `Bearer ${connection.token}`, 'X-GitHub-Api-Version': '2022-11-28' },
         signal: AbortSignal.timeout(12000),
       })
-      if (headResponse.status === 404 || headResponse.status === 409) return { ...repo, head_sha: null }
+      if (headResponse.status === 404 || headResponse.status === 409
+        || (headResponse.status === 403 && headResponse.headers.get('x-ratelimit-remaining') !== '0')) {
+        return { ...repo, head_sha: null }
+      }
       if (!headResponse.ok) {
         const error = new Error('Could not resolve a selected repository commit. Check GitHub permissions and retry.')
         error.status = headResponse.status === 401 || headResponse.status === 403 ? headResponse.status : 502
@@ -550,7 +572,7 @@ app.get('/api/github/status', requireSession, async (req, res, next) => {
   res.set('Cache-Control', 'private, no-store')
   try {
     const result = await pool.query(`SELECT c.github_login, c.created_at,
-      (SELECT COUNT(*)::int FROM public.github_repositories r WHERE r.user_id=c.user_id AND r.selected=true) AS selected_count
+      (SELECT COUNT(*)::int       FROM public.github_repositories r WHERE r.user_id=c.user_id AND r.selected=true AND r.private=false) AS selected_count
       FROM public.github_connections c WHERE c.user_id=$1`, [req.user.id])
     const connection = result.rows[0]
     return res.json({ connected: Boolean(connection), githubLogin: connection?.github_login || null, connectedAt: connection?.created_at || null, selectedCount: connection?.selected_count || 0 })
@@ -562,11 +584,11 @@ app.get('/api/github/repositories', requireSession, async (req, res) => {
   try {
     const connection = await getGitHubAccessToken(req.user.id)
     if (!connection) return res.status(409).json({ error: 'Connect GitHub to see your repositories.' })
-    const { repositories: repos, tokenScopes } = await fetchAccessibleGitHubRepositories(connection.token)
-    console.info(`GitHub repository inventory synced; count=${repos.length}; oauth_scope_header=${tokenScopes === null ? 'not-provided' : tokenScopes || 'empty'}`)
+    const { repositories: repos, tokenScopes } = await fetchPublicGitHubRepositories(connection.token)
+    console.info(`Public GitHub repository inventory synced; count=${repos.length}; oauth_scope_header=${tokenScopes === null ? 'not-provided' : tokenScopes || 'empty'}`)
     await saveGitHubRepositories(req.user.id, repos)
     const saved = await pool.query(`SELECT repository_id::text AS id, full_name, private, html_url, description, language, default_branch, pushed_at, selected
-      FROM public.github_repositories WHERE user_id=$1 ORDER BY full_name`, [req.user.id])
+      FROM public.github_repositories WHERE user_id=$1 AND private=false ORDER BY full_name`, [req.user.id])
     return res.json({ githubLogin: connection.login, repositories: saved.rows })
   } catch (error) {
     if (error.status) return res.status(error.status === 401 || error.status === 403 ? 502 : error.status).json({ error: error.message })
@@ -579,9 +601,9 @@ app.put('/api/github/repositories/selection', requireTrustedOrigin, requireSessi
   if (!Array.isArray(ids) || ids.length > 200 || ids.some((id) => !/^\d{1,20}$/.test(String(id)))) return res.status(400).json({ error: 'Choose up to 200 valid repositories.' })
   try {
     const idStrings = [...new Set(ids.map(String))]
-    const found = await pool.query('SELECT repository_id::text FROM public.github_repositories WHERE user_id=$1 AND repository_id=ANY($2::bigint[])', [req.user.id, idStrings])
+    const found = await pool.query('SELECT repository_id::text FROM public.github_repositories WHERE user_id=$1 AND private=false AND repository_id=ANY($2::bigint[])', [req.user.id, idStrings])
     if (found.rowCount !== idStrings.length) return res.status(400).json({ error: 'One or more repositories are not connected to your account.' })
-    await pool.query('UPDATE public.github_repositories SET selected=(repository_id=ANY($2::bigint[])) WHERE user_id=$1', [req.user.id, idStrings])
+    await pool.query('UPDATE public.github_repositories SET selected=(private=false AND repository_id=ANY($2::bigint[])) WHERE user_id=$1', [req.user.id, idStrings])
     return res.json({ ok: true, selectedCount: idStrings.length })
   } catch { return res.status(500).json({ error: 'Could not save repository selection.' }) }
 })

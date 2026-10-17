@@ -91,6 +91,8 @@ class ChatSmokeTests(unittest.IsolatedAsyncioTestCase):
         ))
         self.assertTrue(result["answer"])
         self.assertEqual(FakeAsyncClient.request_body["tools"][0]["allowed_tools"], ["search_code", "get_file_contents", "search_repositories", "get_repository"])
+        self.assertIn("never request or inspect private repositories", FakeAsyncClient.request_body["instructions"])
+        self.assertIn("skip it, do not retry", FakeAsyncClient.request_body["instructions"])
         self.assertNotIn("tool_choice", FakeAsyncClient.request_body)
 
     async def test_repository_tool_miss_retries_after_successful_discovery(self):
