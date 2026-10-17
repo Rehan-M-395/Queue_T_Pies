@@ -28,3 +28,13 @@ The sample row has a plaintext value in `password_hash`. On its first successful
 Resume files are limited to 10 MB and PDF/DOCX, verified by extension, MIME type, and file signature. The API stores objects under a per-user path, keeps metadata in `public.resumes`, and issues short-lived signed URLs only after verifying ownership. `POST /api/resumes/:id/analyze` retrieves that user's private file, sends it to the authenticated Python AI service for text extraction and Groq skill extraction, and persists structured skills on the resume row. The relevant endpoints are `POST /api/resumes`, `GET /api/resumes`, `POST /api/resumes/:id/analyze`, `GET /api/resumes/:id/view`, `GET /api/resumes/:id/download`, and `DELETE /api/resumes/:id`.
 
 Resume text is sent server-to-server to Groq for analysis; the frontend never receives the Groq key. Scanned PDFs without a text layer are reported as unreadable (OCR is not included). Install the updated `python-backend/requirements.txt` before starting the Python service.
+
+## Resume analysis deployment
+
+On Render, set `PYTHON_AGENT_URL` on the Node API service to the base URL of the
+deployed Python service (for example, `https://your-python-service.onrender.com`,
+without `/analyze-resume`). Set `JWT_SECRET` on the Python service to exactly the
+same value as the Node API's `JWT_SECRET`, and set `GROQ_API_KEY` on the Python
+service. Keep these server-side; none belong in Vercel frontend environment
+variables. After deploying, `GET /api/health` reports whether the resume
+analysis URL is configured, alongside the existing resume-storage status.

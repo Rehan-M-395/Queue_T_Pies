@@ -26,6 +26,18 @@ const frontendOrigins = [...new Set([
   ...(process.env.FRONTEND_ORIGIN || 'http://localhost:5173')
     .split(',').map((origin) => origin.trim()).filter(Boolean),
 ])]
+function getPythonAgentUrl() {
+  const configuredUrl = (process.env.PYTHON_AGENT_URL
+    || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001')).trim()
+  if (!configuredUrl) return ''
+  try {
+    const url = new URL(configuredUrl)
+    if (!['http:', 'https:'].includes(url.protocol)) return ''
+    return configuredUrl.replace(/\/+$/, '')
+  } catch {
+    return ''
+  }
+}
 const cookieName = 'queue_session'
 const resumeBucket = 'resumes'
 const maxResumeBytes = 10 * 1024 * 1024
@@ -201,6 +213,7 @@ app.get('/api/health', (_req, res) => {
     ok: true,
     resumeStorageConfigured: Boolean(supabase),
     resumeBucketReady,
+    resumeAnalysisServiceConfigured: Boolean(getPythonAgentUrl()),
     githubConfigured: Boolean(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET && process.env.GITHUB_TOKEN_ENCRYPTION_KEY),
     githubConfig: {
       clientIdPresent: Boolean(process.env.GITHUB_CLIENT_ID),
@@ -848,6 +861,7 @@ app.post('/api/resumes', requireTrustedOrigin, requireSession, requireResumeStor
       [req.user.id, safeFilename],
     )
     if (existing.rowCount) {
+      console.info('Resume upload rejected; reason=duplicate_database_record')
       return res.status(409).json({ error: 'A resume with this filename already exists. Rename the file before uploading it again.' })
     }
 
@@ -862,8 +876,15 @@ app.post('/api/resumes', requireTrustedOrigin, requireSession, requireResumeStor
         [req.user.id, safeFilename],
       )
       if (duplicate.rowCount) {
+        console.info('Resume upload rejected; reason=duplicate_database_record')
         return res.status(409).json({ error: 'A resume with this filename already exists. Rename the file before uploading it again.' })
       }
+      const storageStatus = Number(uploaded.error.statusCode)
+      if (storageStatus === 409 || uploaded.error.error === 'Duplicate') {
+        console.info(`Resume upload rejected; reason=storage_object_conflict; storage_status=${storageStatus || 'unavailable'}; storage_code=${uploaded.error.error || 'unavailable'}`)
+        return res.status(409).json({ error: 'A file with this name already exists in resume storage. Rename it before uploading again.' })
+      }
+      console.error(`Resume upload failed; storage_status=${storageStatus || 'unavailable'}; storage_code=${uploaded.error.error || uploaded.error.name || 'unavailable'}`)
       return res.status(502).json({ error: 'Could not store the resume. Please try again.' })
     }
 
@@ -887,8 +908,9 @@ app.post('/api/resumes', requireTrustedOrigin, requireSession, requireResumeStor
 
 app.post('/api/resumes/:id/analyze', requireTrustedOrigin, requireSession, requireResumeStorage, async (req, res, next) => {
   const resumeId = req.params.id
+  const requestId = randomUUID()
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(resumeId)) {
-    return res.status(400).json({ error: 'Invalid resume id.' })
+    return res.status(400).json({ error: 'Invalid resume id.', requestId })
   }
   try {
     const result = await pool.query(
@@ -899,12 +921,12 @@ app.post('/api/resumes/:id/analyze', requireTrustedOrigin, requireSession, requi
     const resume = result.rows[0]
     if (!resume) return res.status(404).json({ error: 'Resume not found.' })
 
-    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001')).replace(/\/$/, '')
-    if (!agentUrl) return res.status(503).json({ error: 'Resume analysis service is not configured on the backend.' })
+    const agentUrl = getPythonAgentUrl()
+    if (!agentUrl) return res.status(503).json({ error: 'Resume analysis service URL is missing or invalid on the backend.', requestId })
     const { data, error: downloadError } = await supabase.storage.from(resumeBucket).download(resume.storage_path)
     if (downloadError || !data) {
-      console.error(`Could not read stored resume for analysis; resume_id=${resumeId}; storage_status=${downloadError?.statusCode || 'unavailable'}`)
-      return res.status(502).json({ error: 'Could not read the stored resume for analysis.' })
+      console.error(`Could not read stored resume for analysis; request_id=${requestId}; resume_id=${resumeId}; storage_status=${downloadError?.statusCode || 'unavailable'}; storage_code=${downloadError?.error || downloadError?.name || 'unavailable'}`)
+      return res.status(502).json({ error: 'Could not read the stored resume for analysis.', requestId })
     }
 
     await pool.query(
@@ -927,16 +949,22 @@ app.post('/api/resumes/:id/analyze', requireTrustedOrigin, requireSession, requi
       })
     } catch (error) {
       await pool.query(`UPDATE public.resumes SET skills_analysis_status='failed' WHERE id=$1 AND user_id=$2`, [resumeId, req.user.id])
-      if (error.name === 'TimeoutError' || error.name === 'AbortError') return res.status(504).json({ error: 'Resume analysis took too long. Please retry.' })
-      console.error(`Could not reach resume analysis service; resume_id=${resumeId}; error_code=${error.cause?.code || error.code || error.name}`)
-      return res.status(502).json({ error: 'Could not reach the resume analysis service. Please retry.' })
+      if (error.name === 'TimeoutError' || error.name === 'AbortError') return res.status(504).json({ error: 'Resume analysis took too long. Please retry.', requestId })
+      console.error(`Could not reach resume analysis service; request_id=${requestId}; resume_id=${resumeId}; error_code=${error.cause?.code || error.code || error.name}`)
+      return res.status(502).json({ error: 'Could not reach the resume analysis service. Please retry.', requestId })
     }
     const payload = await response.json().catch(() => ({}))
     if (!response.ok || !Array.isArray(payload.skills)) {
       await pool.query(`UPDATE public.resumes SET skills_analysis_status='failed' WHERE id=$1 AND user_id=$2`, [resumeId, req.user.id])
-      console.error(`Resume analysis failed; resume_id=${resumeId}; status=${response.status}; request_id=${payload.request_id || 'unavailable'}`)
-      const status = [401, 403, 422, 429, 503, 504].includes(response.status) ? response.status : 502
-      return res.status(status).json({ error: typeof payload.detail === 'string' ? payload.detail : 'Could not analyze this resume. Please retry.' })
+      const downstreamRequestId = payload.request_id || response.headers.get('x-request-id') || requestId
+      console.error(`Resume analysis service failed; request_id=${downstreamRequestId}; resume_id=${resumeId}; status=${response.status}; provider_status=${payload.provider_status || 'unavailable'}; provider_code=${payload.provider_code || 'unavailable'}`)
+      const status = [400, 401, 403, 413, 415, 422, 429, 503, 504].includes(response.status) ? response.status : 502
+      return res.status(status).json({
+        error: response.status === 404
+          ? 'The resume analysis endpoint was not found. Check the backend Python service URL.'
+          : typeof payload.detail === 'string' ? payload.detail : 'Could not analyze this resume. Please retry.',
+        requestId: downstreamRequestId,
+      })
     }
 
     const saved = await pool.query(

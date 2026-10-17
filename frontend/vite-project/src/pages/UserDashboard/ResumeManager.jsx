@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { apiRequest } from '../../api'
 
 const maxFileSize = 10 * 1024 * 1024
@@ -16,6 +16,8 @@ export default function ResumeManager() {
   const [analyzingResumeId, setAnalyzingResumeId] = useState(null)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
+  const uploadInProgress = useRef(false)
+  const analysesInProgress = useRef(new Set())
 
   useEffect(() => {
     let active = true
@@ -27,6 +29,12 @@ export default function ResumeManager() {
   }, [])
 
   async function analyzeResume(id) {
+    if (typeof id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)) {
+      setError('This resume has an invalid ID. Reload your resumes and try again.')
+      return
+    }
+    if (analysesInProgress.current.size) return
+    analysesInProgress.current.add(id)
     setError('')
     setMessage('')
     setAnalyzingResumeId(id)
@@ -41,17 +49,19 @@ export default function ResumeManager() {
       setResumes((current) => current.map((resume) => resume.id === id ? { ...resume, skillsStatus: 'failed' } : resume))
       setError(requestError.message)
     } finally {
+      analysesInProgress.current.delete(id)
       setAnalyzingResumeId(null)
     }
   }
 
   async function uploadResume(event) {
     event.preventDefault()
-    if (!file) return
+    if (uploadInProgress.current || !file) return
     if (file.size > maxFileSize) {
       setError('Resume files must be 10 MB or smaller.')
       return
     }
+    uploadInProgress.current = true
     setUploading(true)
     setError('')
     setMessage('')
@@ -63,11 +73,11 @@ export default function ResumeManager() {
       setFile(null)
       uploadForm.reset()
       setResumes((current) => [resume, ...current.filter((item) => item.id !== resume.id)])
-      setUploading(false)
       await analyzeResume(resume.id)
     } catch (requestError) {
       setError(requestError.message)
     } finally {
+      uploadInProgress.current = false
       setUploading(false)
     }
   }
