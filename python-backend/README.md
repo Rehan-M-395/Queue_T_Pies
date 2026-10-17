@@ -1,9 +1,10 @@
 # Queue_T_Pies Python AI service
 
-This FastAPI service calls Groq's Responses API for AI chat, resume skill extraction, and GitHub's hosted read-only MCP server. It does
-not implement a second GitHub MCP server. The existing Node API remains the authenticated gateway:
-it verifies Queue_T_Pies sessions, resolves the user's linked GitHub token, and forwards the request
-to this service. FastAPI validates that same signed session before using the supplied user context.
+This FastAPI service calls Groq's Responses API for AI chat and resume skill extraction. GitHub analysis
+uses bounded source excerpts fetched directly from public GitHub URLs at a specific commit; it does not
+call GitHub MCP and never sends a GitHub access token to the AI service. The Node API remains the
+authenticated gateway: it verifies Queue_T_Pies sessions and forwards the selected public repositories.
+FastAPI validates the same signed session before using the supplied user context.
 
 ## Local setup
 

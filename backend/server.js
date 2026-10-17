@@ -458,7 +458,6 @@ app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, as
         selected_repositories: selectedRepositories,
         accessible_repositories: accessibleRepositories,
         github_login: githubConnection?.login || null,
-        github_access_token: githubConnection?.token || null,
       }),
       signal: AbortSignal.timeout(95000),
     })
@@ -542,7 +541,7 @@ app.post('/api/github/portfolio-analysis', requireTrustedOrigin, requireSession,
     const response = await fetch(`${agentUrl}/portfolio-analysis`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${getToken(req)}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user_id: req.user.id, job_id: jobId, job_title: jobTitle, required_skills: requiredSkills, preferred_skills: preferredSkills, repositories, github_access_token: connection.token }),
+      body: JSON.stringify({ user_id: req.user.id, job_id: jobId, job_title: jobTitle, required_skills: requiredSkills, preferred_skills: preferredSkills, repositories }),
       signal: AbortSignal.timeout(190000),
     })
     const payload = await response.json().catch(() => ({}))
