@@ -1,7 +1,4 @@
-const defaultApiUrl = import.meta.env.DEV
-  ? `http://${window.location.hostname || 'localhost'}:4000`
-  : 'https://queue-t-pies.onrender.com'
-const apiBase = (import.meta.env.VITE_API_URL || defaultApiUrl).replace(/\/$/, '')
+const apiBase = 'https://queue-t-pies.onrender.com'
 
 export async function apiRequest(path, options = {}) {
   const isFormData = typeof FormData !== 'undefined' && options.body instanceof FormData

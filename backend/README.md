@@ -7,7 +7,7 @@
 3. Add your Supabase project URL as `SUPABASE_URL` and its **server-side secret key** as `SUPABASE_SECRET_KEY`. `SUPABASE_PUBLISHABLE_KEY` and `SUPABASE_JWKS_URL` can also be recorded there, but resume storage uses only the secret key. Never add the secret key to a frontend environment variable or commit it.
 4. Confirm `USERS_TABLE` matches your table. It defaults to `public.users`.
 5. Run `npm run db:migrate` from this folder to apply the resume metadata and skill extraction migrations.
-6. Run `npm run dev` from this folder. When the Supabase values are set, the API creates or ensures a private `resumes` bucket at startup. The API listens on port 4000 by default.
+6. Run `npm run dev` from this folder. When the Supabase values are set, the API creates or ensures a private `resumes` bucket at startup. The API listens on port 3000 by default.
 7. In another terminal, run `npm run dev` from `frontend/vite-project`.
 
 The user table must have `id`, `name`, `email`, `password_hash`, `role`, `created_at`, and `updated_at` columns. `id` should accept UUID values, and email should have a unique constraint. New account passwords are stored as bcrypt hashes. Admin/HR roles must be provisioned by an administrator; public signup only creates the `user` role.
