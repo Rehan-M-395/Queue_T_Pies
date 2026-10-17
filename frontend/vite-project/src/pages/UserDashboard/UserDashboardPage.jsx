@@ -8,7 +8,7 @@ import GitHubAnalysis from './GitHubAnalysis'
 import AIAnalysis from './AIAnalysis'
 
 export default function UserDashboardPage() {
-  const [activeSection, setActiveSection] = useState(() => new URLSearchParams(window.location.search).has('github') ? 'GitHub Analysis' : 'Home')
+  const [activeSection, setActiveSection] = useState(() => new URLSearchParams(window.location.search).has('github') ? 'GitHub Portfolio' : 'Career home')
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [logoutError, setLogoutError] = useState('')
   const { user, signOut } = useAuth()
@@ -33,22 +33,19 @@ export default function UserDashboardPage() {
             <span aria-hidden="true">{sidebarOpen ? '‹' : '›'}</span>
           </button>
         </div>
-        <div className="sidebar-section-label">YOUR WORKSPACE</div>
+        <div className="sidebar-section-label">YOUR CAREER WORKSPACE</div>
         <nav className="user-sidebar-nav" aria-label="User sections">
-          <button className={activeSection === 'Home' ? 'active' : ''} onClick={() => setActiveSection('Home')} aria-current={activeSection === 'Home' ? 'page' : undefined}>
-            <span className="sidebar-icon" aria-hidden="true">⌂</span><span className="sidebar-nav-label">Home</span>
+          <button className={activeSection === 'Career home' ? 'active' : ''} onClick={() => setActiveSection('Career home')} aria-current={activeSection === 'Career home' ? 'page' : undefined}>
+            <span className="sidebar-icon" aria-hidden="true">⌂</span><span className="sidebar-nav-label">Career home</span>
           </button>
           <button className={activeSection === 'Resume' ? 'active' : ''} onClick={() => setActiveSection('Resume')} aria-current={activeSection === 'Resume' ? 'page' : undefined}>
-            <span className="sidebar-icon" aria-hidden="true">▤</span><span className="sidebar-nav-label">Resume</span>
+            <span className="sidebar-icon" aria-hidden="true">▤</span><span className="sidebar-nav-label">Resume insights</span>
           </button>
-          <button className={activeSection === 'Edit profile' ? 'active' : ''} onClick={() => setActiveSection('Edit profile')} aria-current={activeSection === 'Edit profile' ? 'page' : undefined}>
-            <span className="sidebar-icon" aria-hidden="true">◉</span><span className="sidebar-nav-label">Edit profile</span>
+          <button className={activeSection === 'GitHub Portfolio' ? 'active' : ''} onClick={() => setActiveSection('GitHub Portfolio')} aria-current={activeSection === 'GitHub Portfolio' ? 'page' : undefined}>
+            <span className="sidebar-icon" aria-hidden="true">⌘</span><span className="sidebar-nav-label">GitHub portfolio</span>
           </button>
-          <button className={activeSection === 'GitHub Analysis' ? 'active' : ''} onClick={() => setActiveSection('GitHub Analysis')} aria-current={activeSection === 'GitHub Analysis' ? 'page' : undefined}>
-            <span className="sidebar-icon" aria-hidden="true">⌘</span><span className="sidebar-nav-label">GitHub Analysis</span>
-          </button>
-          <button className={activeSection === 'AI Analysis' ? 'active' : ''} onClick={() => setActiveSection('AI Analysis')} aria-current={activeSection === 'AI Analysis' ? 'page' : undefined}>
-            <span className="sidebar-icon" aria-hidden="true">✦</span><span className="sidebar-nav-label">AI Analysis</span>
+          <button className={activeSection === 'Career Coach' ? 'active' : ''} onClick={() => setActiveSection('Career Coach')} aria-current={activeSection === 'Career Coach' ? 'page' : undefined}>
+            <span className="sidebar-icon" aria-hidden="true">✦</span><span className="sidebar-nav-label">AI chat</span>
           </button>
         </nav>
         <div className="sidebar-account">
@@ -59,11 +56,10 @@ export default function UserDashboardPage() {
         {logoutError && <p className="logout-error" role="alert">{logoutError}</p>}
       </aside>
       <section className="user-content-canvas" aria-label={`${activeSection} workspace`}>
-        {activeSection === 'Home' && <JobSearch />}
+        {activeSection === 'Career home' && <JobSearch />}
         {activeSection === 'Resume' && <ResumeManager />}
-        {activeSection === 'Edit profile' && <div className="profile-placeholder">Profile editing will be available here.</div>}
-        {activeSection === 'GitHub Analysis' && <GitHubAnalysis />}
-        {activeSection === 'AI Analysis' && <AIAnalysis />}
+        {activeSection === 'GitHub Portfolio' && <GitHubAnalysis />}
+        {activeSection === 'Career Coach' && <AIAnalysis />}
       </section>
     </main>
   )

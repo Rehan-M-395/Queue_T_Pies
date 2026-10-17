@@ -23,10 +23,10 @@ source control. Install the updated requirements to add PDF/DOCX text extraction
 Start FastAPI in one terminal:
 
 ```powershell
-python -m uvicorn main:app --host 127.0.0.1 --port 8001 --app-dir .
+python -m uvicorn main:app --host localhost --port 8001 --app-dir .
 ```
 
-Set `PYTHON_AGENT_URL=http://127.0.0.1:8001` in `backend/.env`, then start the existing Node API
+Set `PYTHON_AGENT_URL=http://localhost:8001` in `backend/.env`, then start the existing Node API
 and Vite frontend as usual. The frontend calls Node only; it never receives Groq or GitHub tokens.
 
 ## Deployment

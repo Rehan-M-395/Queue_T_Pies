@@ -9,8 +9,7 @@ export function BrandMark() {
 }
 
 export function Brand({ to = '/' }) {
-  return <Link className="brand" to={to} aria-label="Queue_T_pies home"><BrandMark /><span>Queue<span className="brand-accent">_T_pies</span></span></Link>
+  return <Link className="brand" to={to} aria-label="SkillBit AI home"><BrandMark /><span>SkillBit<span className="brand-accent"> AI</span></span></Link>
 }
 
 export default Brand
-

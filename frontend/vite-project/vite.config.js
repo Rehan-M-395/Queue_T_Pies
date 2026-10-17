@@ -9,5 +9,15 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        configure(proxy) {
+          proxy.on('proxyReq', (proxyReq, request) => {
+            if (request.headers.origin) proxyReq.setHeader('Origin', 'http://localhost:5173')
+          })
+        },
+      },
+    },
   },
 })

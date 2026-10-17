@@ -410,6 +410,10 @@ async function getGitHubAccessToken(userId) {
 app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, async (req, res) => {
   const message = typeof req.body?.message === 'string' ? req.body.message.trim() : ''
   if (!message || message.length > 3000) return res.status(400).json({ error: 'Enter a message of up to 3,000 characters.' })
+  const resumeId = typeof req.body?.resumeId === 'string' ? req.body.resumeId.trim() : ''
+  if (resumeId && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(resumeId)) {
+    return res.status(400).json({ error: 'The selected resume ID is invalid.' })
+  }
   const history = req.body?.history
   if (history !== undefined && (!Array.isArray(history) || history.length > 10 || history.some((item) =>
     !item || !['user', 'assistant'].includes(item.role) || typeof item.content !== 'string' || item.content.length > 1500))) {
@@ -417,8 +421,30 @@ app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, as
   }
 
   try {
-    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8001')).replace(/\/$/, '')
+    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001')).replace(/\/$/, '')
     if (!agentUrl) return res.status(503).json({ error: 'AI Analysis service is not configured on the backend.' })
+    let resumeContext = null
+    if (resumeId) {
+      if (!supabase || !resumeBucketReady) return res.status(503).json({ error: 'Resume storage is not ready. Check the backend storage configuration.' })
+      const result = await pool.query(
+        `SELECT original_filename, storage_path, content_type FROM public.resumes WHERE id=$1 AND user_id=$2 LIMIT 1`,
+        [resumeId, req.user.id],
+      )
+      const resume = result.rows[0]
+      if (!resume) return res.status(404).json({ error: 'Resume not found in your account.' })
+      if (!Object.values(acceptedResumeTypes).includes(resume.content_type)) {
+        return res.status(415).json({ error: 'This resume format cannot be used in AI chat.' })
+      }
+      const { data, error } = await supabase.storage.from(resumeBucket).download(resume.storage_path)
+      if (error || !data) return res.status(502).json({ error: 'Could not read the selected resume from storage.' })
+      const fileBytes = Buffer.from(await data.arrayBuffer())
+      if (!fileBytes.length || fileBytes.length > maxResumeBytes) return res.status(413).json({ error: 'Resume files must be 10 MB or smaller.' })
+      resumeContext = {
+        original_filename: resume.original_filename,
+        content_type: resume.content_type,
+        file_base64: fileBytes.toString('base64'),
+      }
+    }
     const githubMode = classifyGitHubQuestion(message)
     let selectedRepositories = []
     let accessibleRepositories = []
@@ -458,6 +484,8 @@ app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, as
         selected_repositories: selectedRepositories,
         accessible_repositories: accessibleRepositories,
         github_login: githubConnection?.login || null,
+        github_access_token: githubConnection?.token || null,
+        resume_context: resumeContext,
       }),
       signal: AbortSignal.timeout(95000),
     })
@@ -501,7 +529,7 @@ app.post('/api/github/portfolio-analysis', requireTrustedOrigin, requireSession,
   if (!requiredSkills.length && !preferredSkills.length) return res.status(422).json({ error: 'This listing has no required or preferred skills to assess.' })
 
   try {
-    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8001')).replace(/\/$/, '')
+    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001')).replace(/\/$/, '')
     if (!agentUrl) return res.status(503).json({ error: 'AI Analysis service is not configured on the backend.' })
     const connection = await getGitHubAccessToken(req.user.id)
     if (!connection) return res.status(409).json({ error: 'Connect GitHub in GitHub Analysis before analyzing your portfolio.' })
@@ -868,7 +896,7 @@ app.post('/api/resumes/:id/analyze', requireTrustedOrigin, requireSession, requi
     const resume = result.rows[0]
     if (!resume) return res.status(404).json({ error: 'Resume not found.' })
 
-    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8001')).replace(/\/$/, '')
+    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001')).replace(/\/$/, '')
     if (!agentUrl) return res.status(503).json({ error: 'Resume analysis service is not configured on the backend.' })
     const { data, error: downloadError } = await supabase.storage.from(resumeBucket).download(resume.storage_path)
     if (downloadError || !data) return res.status(502).json({ error: 'Could not read the stored resume for analysis.' })

@@ -12,7 +12,7 @@ export default function GitHubAnalysis() {
     ? new URLSearchParams(window.location.search).get('github') === 'invalid_state'
       ? 'GitHub authorization expired or could not be validated. Please try again.'
       : new URLSearchParams(window.location.search).get('github') === 'github_already_linked'
-        ? 'This GitHub account is already linked to another Queue_T_Pies account. Sign in to that account or authorize a different GitHub account.'
+        ? 'This GitHub account is already linked to another SkillBit AI account. Sign in to that account or authorize a different GitHub account.'
         : 'GitHub authorization did not complete. Check the GitHub App configuration and retry.'
     : '')
   const [notice, setNotice] = useState(() => new URLSearchParams(window.location.search).get('github') === 'connected' ? 'GitHub connected. Select repositories to analyze.' : '')
@@ -76,7 +76,7 @@ export default function GitHubAnalysis() {
       await apiRequest('/api/github/connection', { method: 'DELETE' })
       setStatus({ connected: false, githubLogin: null, selectedCount: 0 })
       setRepositories([])
-      setNotice('GitHub disconnected from this Queue_T_Pies account. You can now connect the intended GitHub account.')
+      setNotice('GitHub disconnected from this SkillBit AI account. You can now connect the intended GitHub account.')
     } catch (disconnectError) { setError(disconnectError.message || 'Could not disconnect GitHub.') }
     finally { setDisconnecting(false) }
   }
@@ -85,15 +85,15 @@ export default function GitHubAnalysis() {
     <section className="github-analysis">
       <header className="github-heading">
         <p className="resume-kicker">CAREER WORKSPACE</p>
-        <h1>GitHub Analysis</h1>
-        <p>Connect your GitHub account and choose repositories for future skills analysis.</p>
+        <h1>GitHub portfolio</h1>
+        <p>Connect your GitHub account and choose projects for evidence-based skills feedback from your career coach.</p>
       </header>
       {error && <div className="github-message error" role="alert"><span>{error}</span><button onClick={load}>Retry</button></div>}
       {notice && <p className="github-message success" role="status">{notice}</p>}
       {loading ? <div className="github-state" role="status">Checking GitHub connection…</div> : !status?.connected ? (
         <div className="github-connect-card">
           <span className="github-mark" aria-hidden="true">⌘</span>
-          <div><h2>Connect your GitHub account</h2><p>Your authorization stays linked to this Queue_T_Pies account. Tokens are stored encrypted on the backend.</p></div>
+          <div><h2>Connect your GitHub account</h2><p>Your authorization stays linked to this SkillBit AI account. Tokens are stored encrypted on the backend.</p></div>
           <button className="github-primary" onClick={connectGitHub}>Connect GitHub</button>
         </div>
       ) : (

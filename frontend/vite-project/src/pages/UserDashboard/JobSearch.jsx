@@ -115,9 +115,9 @@ export default function JobSearch() {
   return (
     <div className="job-search">
       <header className="jobs-heading">
-        <p className="resume-kicker">YOUR NEXT OPPORTUNITY</p>
-        <h1>Find jobs and internships</h1>
-        <p>Explore preview listings. Search by role, skill, company, location, or experience.</p>
+        <p className="resume-kicker">YOUR CAREER, IN MOTION</p>
+        <h1>Find your next opportunity</h1>
+        <p>Explore jobs and internships, then compare each role with the skills in your resume.</p>
       </header>
 
       <form className="jobs-filters" onSubmit={submitSearch}>
