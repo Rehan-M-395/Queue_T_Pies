@@ -36,6 +36,9 @@ export default function JobDetails({ job, onBack }) {
   const [selectedResumeId, setSelectedResumeId] = useState('')
   const [resumeLoading, setResumeLoading] = useState(true)
   const [resumeError, setResumeError] = useState('')
+  const [portfolioAssessment, setPortfolioAssessment] = useState(null)
+  const [portfolioLoading, setPortfolioLoading] = useState(false)
+  const [portfolioError, setPortfolioError] = useState('')
 
   const loadResumes = useCallback(async () => {
     setResumeLoading(true)
@@ -60,7 +63,35 @@ export default function JobDetails({ job, onBack }) {
   ), [selectedResume])
   const requiredSkills = job.skills?.required?.length ? job.skills.required : skills
   const preferredSkills = job.skills?.preferred || []
+  const portfolioSkills = [...(job.skills?.required || []), ...preferredSkills]
   const requiredMatchedCount = requiredSkills.filter((skill) => resumeSkillMap.has(skillKey(skill))).length
+  const portfolioGaps = (portfolioAssessment?.skills || []).filter((item) => ['partially_demonstrated', 'not_demonstrated_in_scope', 'insufficient_evidence'].includes(item.status))
+
+  const analyzePortfolio = async () => {
+    setPortfolioLoading(true)
+    setPortfolioError('')
+    try {
+      const result = await apiRequest('/api/github/portfolio-analysis', {
+        method: 'POST',
+        body: JSON.stringify({
+          job: { id: job.id || job.job_id, title: job.title, skills: { required: job.skills?.required || [], preferred: preferredSkills } },
+          resumeId: selectedResume?.id || null,
+        }),
+      })
+      setPortfolioAssessment(result.assessment)
+    } catch (error) {
+      setPortfolioError(error.message || 'Could not analyze your GitHub portfolio.')
+    } finally {
+      setPortfolioLoading(false)
+    }
+  }
+
+  const statusLabel = {
+    demonstrated: 'Demonstrated in code',
+    partially_demonstrated: 'Partially demonstrated',
+    not_demonstrated_in_scope: 'No evidence found in inspected code',
+    insufficient_evidence: 'Insufficient evidence',
+  }
 
   return (
     <article className="job-details-view">
@@ -103,6 +134,40 @@ export default function JobDetails({ job, onBack }) {
             <p className="job-skill-match-note">“Not found in resume” means the skill wasn’t identified in the resume text; it doesn’t necessarily mean you don’t have it. Hover over a match to see its resume evidence.</p>
           </>
         )}
+      </section>
+
+      <section className="github-portfolio" aria-live="polite">
+        <div className="github-portfolio-heading">
+          <div><p className="resume-kicker">CODE EVIDENCE · SEPARATE FROM RESUME MATCH</p><h2>GitHub portfolio assessment</h2></div>
+          <button type="button" className="github-portfolio-button" onClick={() => void analyzePortfolio()} disabled={portfolioLoading || !portfolioSkills.length}>
+            {portfolioLoading ? 'Analyzing selected repositories…' : portfolioAssessment ? 'Analyze again' : 'Analyze GitHub Portfolio'}
+          </button>
+        </div>
+        {!portfolioSkills.length && <p className="job-skill-match-status">This listing has no structured required or preferred skills to assess.</p>}
+        {portfolioError && <div className="job-skill-match-status error"><span>{portfolioError}</span><button type="button" onClick={() => void analyzePortfolio()} disabled={portfolioLoading}>Retry</button></div>}
+        {portfolioLoading && <p className="job-skill-match-status">Inspecting selected repository trees, commits, and relevant source files. This may take a few minutes.</p>}
+        {portfolioAssessment && <>
+          <p className="github-portfolio-summary">{portfolioAssessment.summary || 'Assessment complete.'}{portfolioAssessment.partial && ' Some repositories or skills could not be fully assessed.'}</p>
+          {portfolioAssessment.repositories?.length === 0 && <p className="job-skill-match-status">No repository results were returned. Check your GitHub connection and selected repositories.</p>}
+          {portfolioGaps.length > 0 && <section className="github-gap-list"><h3>Evidence gaps to address</h3><p>These are gaps in the inspected portfolio evidence, not proof that you lack the skill.</p><ul>{portfolioGaps.map((item) => <li key={`${item.category}-${item.skill}`}><strong>{item.skill}</strong><span>{statusLabel[item.status]}</span>{item.recommendations?.length > 0 && <small>Recommendation: {item.recommendations[0]}</small>}</li>)}</ul></section>}
+          <div className="github-portfolio-results">
+            {portfolioAssessment.skills?.map((item) => <article className="github-skill-result" key={`${item.category}-${item.skill}`}>
+              <header><div><span className="github-skill-category">{item.category}</span><h3>{item.skill}</h3></div><span className={`github-skill-status ${item.status}`}>{statusLabel[item.status] || statusLabel.insufficient_evidence}</span></header>
+              <p>{item.explanation}</p>
+              {item.evidence?.length > 0 ? <ul className="github-skill-evidence">{item.evidence.map((evidence, index) => <li key={`${evidence.repository}-${evidence.path}-${index}`}>
+                <a href={evidence.repositoryUrl} target="_blank" rel="noreferrer">{evidence.repository}</a>
+                <code>{evidence.path}{evidence.startLine ? `:${evidence.startLine}${evidence.endLine && evidence.endLine !== evidence.startLine ? `-${evidence.endLine}` : ''}` : ''}</code>
+                {evidence.snippet && <pre>{evidence.snippet}</pre>}
+                {evidence.explanation && <small>{evidence.explanation}</small>}
+                <small>Analyzed commit: <code>{evidence.commitSha}</code></small>
+              </li>)}</ul> : <p className="github-no-evidence">No code evidence was returned. This does not establish that you lack this skill.</p>}
+              {item.limitations && <p className="github-skill-limitation">Limitations: {item.limitations}</p>}
+              {item.recommendations?.length > 0 && <div className="github-recommendations"><strong>Recommendations only · not completed achievements</strong><ul>{item.recommendations.map((recommendation, index) => <li key={index}>{recommendation}</li>)}</ul></div>}
+            </article>)}
+          </div>
+          {portfolioAssessment.repositories?.length > 0 && <details className="github-assessed-repos"><summary>Repositories and analyzed commits</summary><ul>{portfolioAssessment.repositories.map((repo) => <li key={repo.full_name}><a href={repo.html_url} target="_blank" rel="noreferrer">{repo.full_name}</a><code>{repo.commit_sha || 'Commit unavailable'}</code><span>{repo.status}</span>{repo.limitations && <small>{repo.limitations}</small>}</li>)}</ul></details>}
+        </>}
+        {!portfolioAssessment && !portfolioLoading && !portfolioError && <p className="job-skill-match-status">Analyze code in your selected GitHub repositories to see evidence for this job’s skills. Resume results above remain separate.</p>}
       </section>
 
       <div className="job-details-content">

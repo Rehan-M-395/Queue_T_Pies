@@ -1,5 +1,5 @@
 const defaultApiUrl = import.meta.env.DEV
-  ? 'http://localhost:4000'
+  ? `http://${window.location.hostname || 'localhost'}:4000`
   : 'https://queue-t-pies.onrender.com'
 const apiBase = (import.meta.env.VITE_API_URL || defaultApiUrl).replace(/\/$/, '')
 

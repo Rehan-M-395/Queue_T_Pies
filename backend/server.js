@@ -21,7 +21,8 @@ const app = express()
 app.set('trust proxy', 1)
 const port = Number(process.env.PORT || 4000)
 const jwtSecret = process.env.JWT_SECRET
-const frontendOrigin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173'
+const frontendOrigins = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173')
+  .split(',').map((origin) => origin.trim()).filter(Boolean)
 const cookieName = 'queue_session'
 const resumeBucket = 'resumes'
 const maxResumeBytes = 10 * 1024 * 1024
@@ -49,7 +50,7 @@ const indianApiKey = process.env.INDIANAPI_API_KEY
 const indianApiCacheTtlMs = 5 * 60 * 1000
 let indianApiCache
 
-app.use(cors({ origin: frontendOrigin, credentials: true }))
+app.use(cors({ origin: frontendOrigins, credentials: true }))
 app.use((req, res, next) => {
   const parser = req.path === '/api/github/webhook' && req.method === 'POST'
     ? express.raw({ type: 'application/json', limit: '2mb' })
@@ -62,7 +63,7 @@ const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHea
 const aiChatLimiter = rateLimit({ windowMs: 60 * 1000, limit: 10, standardHeaders: 'draft-8', legacyHeaders: false })
 function requireTrustedOrigin(req, res, next) {
   const origin = req.get('origin')
-  if (origin && origin !== frontendOrigin) return res.status(403).json({ error: 'Request origin is not allowed.' })
+  if (origin && !frontendOrigins.includes(origin)) return res.status(403).json({ error: 'Request origin is not allowed.' })
   return next()
 }
 
@@ -468,6 +469,80 @@ app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, as
     }
     console.error('AI agent request failed:', error.message)
     return res.status(502).json({ error: 'Could not reach AI Analysis. Please retry.' })
+  }
+})
+
+app.post('/api/github/portfolio-analysis', requireTrustedOrigin, requireSession, aiChatLimiter, async (req, res) => {
+  const rawJob = req.body?.job
+  const jobId = String(rawJob?.id || rawJob?.job_id || '').trim().slice(0, 250)
+  const jobTitle = String(rawJob?.title || '').trim().slice(0, 300)
+  const normalizeSkills = (values, category) => Array.isArray(values)
+    ? [...new Set(values.map((value) => String(value?.name ?? value).trim()).filter((value) => value && value.length <= 120))]
+      .slice(0, 80).map((name) => ({ name, category }))
+    : []
+  const requiredSkills = normalizeSkills(rawJob?.skills?.required, 'required')
+  const preferredSkills = normalizeSkills(rawJob?.skills?.preferred, 'preferred')
+  const resumeId = typeof req.body?.resumeId === 'string' && /^[0-9a-f-]{36}$/i.test(req.body.resumeId) ? req.body.resumeId : null
+  if (!jobId || !jobTitle) return res.status(400).json({ error: 'The selected job is missing its ID or title.' })
+  if (!requiredSkills.length && !preferredSkills.length) return res.status(422).json({ error: 'This listing has no required or preferred skills to assess.' })
+
+  try {
+    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8001')).replace(/\/$/, '')
+    if (!agentUrl) return res.status(503).json({ error: 'AI Analysis service is not configured on the backend.' })
+    const connection = await getGitHubAccessToken(req.user.id)
+    if (!connection) return res.status(409).json({ error: 'Connect GitHub in GitHub Analysis before analyzing your portfolio.' })
+    await verifyGitHubIdentity(connection.token, connection.login)
+    const repoResult = await pool.query(`SELECT full_name, html_url, default_branch
+      FROM public.github_repositories WHERE user_id=$1 AND selected=true ORDER BY full_name LIMIT 100`, [req.user.id])
+    if (!repoResult.rowCount) return res.status(409).json({ error: 'Select and save at least one repository in GitHub Analysis first.' })
+    if (repoResult.rowCount > 20) return res.status(422).json({ error: 'Select no more than 20 repositories for one portfolio assessment.' })
+    if (resumeId) {
+      const ownedResume = await pool.query('SELECT id FROM public.resumes WHERE id=$1 AND user_id=$2 LIMIT 1', [resumeId, req.user.id])
+      if (!ownedResume.rowCount) return res.status(400).json({ error: 'The selected resume does not belong to this account.' })
+    }
+    const repositories = await Promise.all(repoResult.rows.map(async (repo) => {
+      const [owner, name] = repo.full_name.split('/')
+      if (!owner || !name || !repo.default_branch) return { ...repo, head_sha: null }
+      const headResponse = await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(name)}/commits/${encodeURIComponent(repo.default_branch)}`, {
+        headers: { Accept: 'application/vnd.github+json', Authorization: `Bearer ${connection.token}`, 'X-GitHub-Api-Version': '2022-11-28' },
+        signal: AbortSignal.timeout(12000),
+      })
+      if (headResponse.status === 404 || headResponse.status === 409) return { ...repo, head_sha: null }
+      if (!headResponse.ok) {
+        const error = new Error('Could not resolve a selected repository commit. Check GitHub permissions and retry.')
+        error.status = headResponse.status === 401 || headResponse.status === 403 ? headResponse.status : 502
+        throw error
+      }
+      const commit = await headResponse.json().catch(() => ({}))
+      return { ...repo, head_sha: /^[0-9a-f]{40}$/i.test(commit.sha || '') ? commit.sha : null }
+    }))
+    const jobSnapshot = { id: jobId, title: jobTitle, skills: { required: requiredSkills.map(({ name }) => name), preferred: preferredSkills.map(({ name }) => name) } }
+    const response = await fetch(`${agentUrl}/portfolio-analysis`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${getToken(req)}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: req.user.id, job_id: jobId, job_title: jobTitle, required_skills: requiredSkills, preferred_skills: preferredSkills, repositories, github_access_token: connection.token }),
+      signal: AbortSignal.timeout(190000),
+    })
+    const payload = await response.json().catch(() => ({}))
+    if (!response.ok) {
+      const status = [401, 403, 409, 429, 503, 504].includes(response.status) ? response.status : 502
+      console.error(`Portfolio analyzer returned HTTP ${response.status}; request_id=${payload.request_id || 'unavailable'}; groq_request_id=${payload.groq_request_id || 'unavailable'}; repo_count=${repoResult.rowCount}; detail=${typeof payload.detail === 'string' ? payload.detail.slice(0, 300) : 'unavailable'}`)
+      return res.status(status).json({ error: typeof payload.detail === 'string' ? payload.detail : 'GitHub portfolio analysis failed. Please retry.', requestId: payload.request_id || null })
+    }
+    const assessment = payload.assessment
+    if (!assessment || !Array.isArray(assessment.skills) || !Array.isArray(assessment.repositories)) return res.status(502).json({ error: 'The portfolio analyzer returned an incomplete assessment. Please retry.' })
+    const saved = await pool.query(`INSERT INTO public.github_portfolio_assessments
+      (user_id, resume_id, job_id, job_title, job_snapshot, assessment, analysis_status)
+      VALUES ($1, $2, $3, $4, $5::jsonb, $6::jsonb, $7) RETURNING id, created_at`,
+    [req.user.id, resumeId, jobId, jobTitle, JSON.stringify(jobSnapshot), JSON.stringify(assessment), assessment.partial ? 'partial' : 'complete'])
+    return res.json({ assessmentId: saved.rows[0].id, createdAt: saved.rows[0].created_at, assessment })
+  } catch (error) {
+    if (error.message.includes('GitHub session') || error.message.includes('decrypted')) return res.status(401).json({ error: error.message })
+    if (error.status) return res.status(error.status === 401 || error.status === 403 ? error.status : 502).json({ error: error.message })
+    if (error.name === 'TimeoutError' || error.name === 'AbortError') return res.status(504).json({ error: 'GitHub portfolio analysis timed out. Try selecting fewer repositories.' })
+    if (error.code === '42P01') return res.status(503).json({ error: 'Portfolio analysis storage is not ready. Apply backend/migrations/005_github_portfolio_assessments.sql, then retry.' })
+    console.error('Portfolio analysis request failed:', error.message)
+    return res.status(502).json({ error: 'Could not complete GitHub portfolio analysis. Please retry.' })
   }
 })
 
