@@ -1,6 +1,6 @@
 # Queue_T_Pies Python AI service
 
-This FastAPI service calls Groq's Responses API with GitHub's hosted read-only MCP server. It does
+This FastAPI service calls Groq's Responses API for AI chat, resume skill extraction, and GitHub's hosted read-only MCP server. It does
 not implement a second GitHub MCP server. The existing Node API remains the authenticated gateway:
 it verifies Queue_T_Pies sessions, resolves the user's linked GitHub token, and forwards the request
 to this service. FastAPI validates that same signed session before using the supplied user context.
@@ -17,7 +17,7 @@ python -m pip install -r requirements.txt
 
 Set `GROQ_API_KEY` and the same `JWT_SECRET` used by `backend/.env` in `python-backend/.env`.
 For local development, `main.py` also loads `backend/.env` as a fallback. Keep both files out of
-source control.
+source control. Install the updated requirements to add PDF/DOCX text extraction dependencies.
 
 Start FastAPI in one terminal:
 

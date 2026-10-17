@@ -37,7 +37,8 @@ export default function AIAnalysis() {
       setDraft('')
       requestAnimationFrame(() => endOfMessages.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }))
     } catch (requestError) {
-      setError(requestError.message || 'Could not reach AI Analysis. Please retry.')
+      const message = requestError.message || 'Could not reach AI Analysis. Please retry.'
+      setError(requestError.requestId ? `${message} (Reference: ${requestError.requestId})` : message)
       setFailedRequest({ content, history })
     } finally {
       setSending(false)

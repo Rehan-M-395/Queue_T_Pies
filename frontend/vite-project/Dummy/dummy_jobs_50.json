@@ -1,0 +1,6836 @@
+[
+  {
+    "job_id": "JOB-2026-001",
+    "title": "Full Stack Developer",
+    "company": {
+      "name": "AsterByte Technologies",
+      "website": "https://example.com/asterbyte",
+      "industry": "Software Development",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 0,
+      "max_years": 1,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Pune"
+      ]
+    },
+    "compensation": {
+      "min_salary": 850000,
+      "max_salary": 1050000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Health insurance",
+        "Mentorship",
+        "Learning budget",
+        "Paid leave"
+      ]
+    },
+    "skills": {
+      "required": [
+        "JavaScript",
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "REST APIs",
+        "Git"
+      ],
+      "preferred": [
+        "TypeScript",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "Next.js"
+      ],
+      "categories": {
+        "primary": [
+          "JavaScript",
+          "React.js",
+          "Node.js",
+          "Express.js"
+        ],
+        "additional": [
+          "MongoDB",
+          "REST APIs",
+          "Git",
+          "TypeScript",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Next.js"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": true
+    },
+    "description": "Build and maintain responsive web applications across frontend and backend layers. Develop REST APIs, integrate databases, write tests, and collaborate with product and design teams.",
+    "responsibilities": [
+      "Build responsive React interfaces.",
+      "Develop backend services with Node.js and Express.js.",
+      "Design and query databases.",
+      "Integrate and document REST APIs.",
+      "Review code and fix bugs."
+    ],
+    "qualifications": [
+      "Working knowledge of JavaScript and related development practices.",
+      "Ability to apply React.js in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-001",
+      "application_method": "Online",
+      "posted_at": "2026-10-17T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Full Stack Developer",
+        "Entry-level",
+        "India",
+        "JavaScript",
+        "React.js"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-002",
+    "title": "Frontend Developer",
+    "company": {
+      "name": "OrbitStack Solutions",
+      "website": "https://example.com/orbitstack",
+      "industry": "Software Development",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Hyderabad",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 500000,
+      "max_salary": 800000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Paid leave",
+        "Mentorship",
+        "Wellness allowance",
+        "Flexible working hours"
+      ]
+    },
+    "skills": {
+      "required": [
+        "JavaScript",
+        "React.js",
+        "HTML",
+        "CSS",
+        "REST APIs",
+        "Git"
+      ],
+      "preferred": [
+        "TypeScript",
+        "Next.js",
+        "Jest",
+        "Accessibility",
+        "Vite"
+      ],
+      "categories": {
+        "primary": [
+          "JavaScript",
+          "React.js",
+          "HTML",
+          "CSS"
+        ],
+        "additional": [
+          "REST APIs",
+          "Git",
+          "TypeScript",
+          "Next.js",
+          "Jest",
+          "Accessibility",
+          "Vite"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Create accessible, responsive user interfaces and reusable components. Work with designers and backend engineers to deliver reliable web experiences.",
+    "responsibilities": [
+      "Implement UI components.",
+      "Ensure responsive layouts and accessibility.",
+      "Integrate frontend applications with APIs.",
+      "Optimize performance.",
+      "Write component tests."
+    ],
+    "qualifications": [
+      "Working knowledge of JavaScript and related development practices.",
+      "Ability to apply React.js in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-002",
+      "application_method": "Online",
+      "posted_at": "2026-10-16T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Frontend Developer",
+        "Entry-level",
+        "India",
+        "JavaScript",
+        "React.js"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-003",
+    "title": "Backend Developer",
+    "company": {
+      "name": "CloudMint Software",
+      "website": "https://example.com/cloudmint",
+      "industry": "Software Development",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 1,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Noida"
+      ]
+    },
+    "compensation": {
+      "min_salary": 800000,
+      "max_salary": 1300000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Health insurance",
+        "Internet allowance",
+        "Wellness allowance",
+        "Paid leave"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Node.js",
+        "Express.js",
+        "SQL",
+        "REST APIs",
+        "Git",
+        "Authentication"
+      ],
+      "preferred": [
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "AWS",
+        "Message Queues"
+      ],
+      "categories": {
+        "primary": [
+          "Node.js",
+          "Express.js",
+          "SQL",
+          "REST APIs"
+        ],
+        "additional": [
+          "Git",
+          "Authentication",
+          "PostgreSQL",
+          "Redis",
+          "Docker",
+          "AWS",
+          "Message Queues"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Design secure and scalable backend services, data models, and APIs. Improve reliability, performance, and observability across services.",
+    "responsibilities": [
+      "Build and maintain APIs.",
+      "Design database schemas and queries.",
+      "Implement authentication and authorization.",
+      "Write tests and documentation.",
+      "Monitor and troubleshoot services."
+    ],
+    "qualifications": [
+      "Working knowledge of Node.js and related development practices.",
+      "Ability to apply Express.js in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-003",
+      "application_method": "Online",
+      "posted_at": "2026-10-15T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Backend Developer",
+        "Mid-level",
+        "India",
+        "Node.js",
+        "Express.js"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-004",
+    "title": "Python Developer",
+    "company": {
+      "name": "BluePeak Systems",
+      "website": "https://example.com/bluepeak",
+      "industry": "Software Development",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 2,
+      "max_years": 5,
+      "level": "Experienced"
+    },
+    "location": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Ahmedabad",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1000000,
+      "max_salary": 1200000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Performance bonus",
+        "Mentorship",
+        "Wellness allowance",
+        "Flexible working hours"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "SQL",
+        "REST APIs",
+        "Git",
+        "Unit Testing"
+      ],
+      "preferred": [
+        "FastAPI",
+        "Django",
+        "PostgreSQL",
+        "Docker",
+        "Linux"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "SQL",
+          "REST APIs",
+          "Git"
+        ],
+        "additional": [
+          "Unit Testing",
+          "FastAPI",
+          "Django",
+          "PostgreSQL",
+          "Docker",
+          "Linux"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Develop Python services and automation tools, connect applications to databases, and maintain dependable, tested code.",
+    "responsibilities": [
+      "Develop Python modules and services.",
+      "Build or integrate APIs.",
+      "Write automated tests.",
+      "Optimize database operations.",
+      "Document implementation details."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply SQL in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-004",
+      "application_method": "Online",
+      "posted_at": "2026-10-14T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Python Developer",
+        "Experienced",
+        "India",
+        "Python",
+        "SQL"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-005",
+    "title": "Data Analyst",
+    "company": {
+      "name": "MapleGrid Innovations",
+      "website": "https://example.com/maplegrid",
+      "industry": "Data and Analytics",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 3,
+      "max_years": 4,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Kochi",
+      "state": "Kerala",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Kochi"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1300000,
+      "max_salary": 1600000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Internet allowance",
+        "Flexible working hours",
+        "Learning budget",
+        "Health insurance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "SQL",
+        "Excel",
+        "Python",
+        "Data Visualization",
+        "Statistics"
+      ],
+      "preferred": [
+        "Power BI",
+        "Tableau",
+        "Pandas",
+        "PostgreSQL",
+        "A/B Testing"
+      ],
+      "categories": {
+        "primary": [
+          "SQL",
+          "Excel",
+          "Python",
+          "Data Visualization"
+        ],
+        "additional": [
+          "Statistics",
+          "Power BI",
+          "Tableau",
+          "Pandas",
+          "PostgreSQL",
+          "A/B Testing"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": true
+    },
+    "description": "Analyze business datasets, build dashboards, and translate findings into practical recommendations for stakeholders.",
+    "responsibilities": [
+      "Clean and validate datasets.",
+      "Write SQL queries.",
+      "Build dashboards and reports.",
+      "Identify trends and anomalies.",
+      "Present insights to stakeholders."
+    ],
+    "qualifications": [
+      "Working knowledge of SQL and related development practices.",
+      "Ability to apply Excel in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-005",
+      "application_method": "Online",
+      "posted_at": "2026-10-13T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Data and Analytics",
+        "Data Analyst",
+        "Mid-level",
+        "India",
+        "SQL",
+        "Excel"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-006",
+    "title": "Machine Learning Engineer",
+    "company": {
+      "name": "EverPeak Data",
+      "website": "https://example.com/everpeak",
+      "industry": "AI and Machine Learning",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Pune"
+      ]
+    },
+    "compensation": {
+      "min_salary": 450000,
+      "max_salary": 950000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Mentorship",
+        "Learning budget",
+        "Paid leave",
+        "Internet allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Scikit-learn",
+        "Statistics",
+        "Git"
+      ],
+      "preferred": [
+        "PyTorch",
+        "TensorFlow",
+        "MLflow",
+        "Docker",
+        "FastAPI"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "Pandas",
+          "NumPy",
+          "Scikit-learn"
+        ],
+        "additional": [
+          "Statistics",
+          "Git",
+          "PyTorch",
+          "TensorFlow",
+          "MLflow",
+          "Docker",
+          "FastAPI"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Develop, evaluate, and deploy machine learning models. Prepare training data, track experiments, and collaborate on production ML systems.",
+    "responsibilities": [
+      "Prepare and validate datasets.",
+      "Train and evaluate models.",
+      "Track experiments and metrics.",
+      "Build inference pipelines.",
+      "Document model limitations."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply Pandas in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-006",
+      "application_method": "Online",
+      "posted_at": "2026-10-12T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "AI and Machine Learning",
+        "Machine Learning Engineer",
+        "Entry-level",
+        "India",
+        "Python",
+        "Pandas"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-007",
+    "title": "DevOps Engineer",
+    "company": {
+      "name": "CloudHarbor Labs",
+      "website": "https://example.com/cloudharbor",
+      "industry": "Cloud and DevOps",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Hyderabad"
+      ]
+    },
+    "compensation": {
+      "min_salary": 600000,
+      "max_salary": 800000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Paid leave",
+        "Performance bonus",
+        "Health insurance",
+        "Learning budget"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Linux",
+        "Docker",
+        "CI/CD",
+        "Git",
+        "Networking"
+      ],
+      "preferred": [
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+        "Prometheus",
+        "Python"
+      ],
+      "categories": {
+        "primary": [
+          "Linux",
+          "Docker",
+          "CI/CD",
+          "Git"
+        ],
+        "additional": [
+          "Networking",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "Prometheus",
+          "Python"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Automate build, test, and deployment workflows while improving infrastructure reliability, monitoring, and operational practices.",
+    "responsibilities": [
+      "Maintain CI/CD pipelines.",
+      "Containerize applications.",
+      "Automate infrastructure tasks.",
+      "Monitor system health.",
+      "Troubleshoot deployment issues."
+    ],
+    "qualifications": [
+      "Working knowledge of Linux and related development practices.",
+      "Ability to apply Docker in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-007",
+      "application_method": "Online",
+      "posted_at": "2026-10-11T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Cloud and DevOps",
+        "DevOps Engineer",
+        "Entry-level",
+        "India",
+        "Linux",
+        "Docker"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-008",
+    "title": "Cloud Engineer",
+    "company": {
+      "name": "CedarWave Technologies",
+      "website": "https://example.com/cedarwave",
+      "industry": "Cloud and DevOps",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 1,
+      "max_years": 4,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Noida"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1200000,
+      "max_salary": 1600000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Health insurance",
+        "Mentorship",
+        "Performance bonus",
+        "Flexible working hours"
+      ]
+    },
+    "skills": {
+      "required": [
+        "AWS",
+        "Linux",
+        "Networking",
+        "IAM",
+        "Git"
+      ],
+      "preferred": [
+        "Terraform",
+        "Docker",
+        "Kubernetes",
+        "Python",
+        "CloudWatch"
+      ],
+      "categories": {
+        "primary": [
+          "AWS",
+          "Linux",
+          "Networking",
+          "IAM"
+        ],
+        "additional": [
+          "Git",
+          "Terraform",
+          "Docker",
+          "Kubernetes",
+          "Python",
+          "CloudWatch"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Help design, deploy, and operate secure cloud infrastructure with appropriate monitoring, access controls, and cost awareness.",
+    "responsibilities": [
+      "Provision cloud resources.",
+      "Configure access policies.",
+      "Monitor performance and costs.",
+      "Automate repeatable tasks.",
+      "Document infrastructure."
+    ],
+    "qualifications": [
+      "Working knowledge of AWS and related development practices.",
+      "Ability to apply Linux in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-008",
+      "application_method": "Online",
+      "posted_at": "2026-10-10T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Cloud and DevOps",
+        "Cloud Engineer",
+        "Mid-level",
+        "India",
+        "AWS",
+        "Linux"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-009",
+    "title": "QA Automation Engineer",
+    "company": {
+      "name": "Ironwood Apps",
+      "website": "https://example.com/ironwood",
+      "industry": "Quality Assurance",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 2,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Ahmedabad",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 800000,
+      "max_salary": 1300000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Paid leave",
+        "Flexible working hours",
+        "Learning budget",
+        "Wellness allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Test Automation",
+        "JavaScript",
+        "API Testing",
+        "Git",
+        "SQL"
+      ],
+      "preferred": [
+        "Playwright",
+        "Cypress",
+        "Selenium",
+        "Jest",
+        "CI/CD"
+      ],
+      "categories": {
+        "primary": [
+          "Test Automation",
+          "JavaScript",
+          "API Testing",
+          "Git"
+        ],
+        "additional": [
+          "SQL",
+          "Playwright",
+          "Cypress",
+          "Selenium",
+          "Jest",
+          "CI/CD"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": true
+    },
+    "description": "Create automated test suites for web applications and APIs, investigate defects, and help teams improve release quality.",
+    "responsibilities": [
+      "Write and maintain automated tests.",
+      "Test APIs and database behavior.",
+      "Report reproducible defects.",
+      "Integrate tests into CI pipelines.",
+      "Collaborate on test strategy."
+    ],
+    "qualifications": [
+      "Working knowledge of Test Automation and related development practices.",
+      "Ability to apply JavaScript in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-009",
+      "application_method": "Online",
+      "posted_at": "2026-10-09T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Quality Assurance",
+        "QA Automation Engineer",
+        "Mid-level",
+        "India",
+        "Test Automation",
+        "JavaScript"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-010",
+    "title": "Mobile App Developer",
+    "company": {
+      "name": "Nexora Digital",
+      "website": "https://example.com/nexora",
+      "industry": "Mobile Development",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 3,
+      "max_years": 5,
+      "level": "Experienced"
+    },
+    "location": {
+      "city": "Kochi",
+      "state": "Kerala",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Kochi"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1200000,
+      "max_salary": 1500000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Paid leave",
+        "Health insurance",
+        "Mentorship",
+        "Internet allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "JavaScript",
+        "React Native",
+        "REST APIs",
+        "Git",
+        "Mobile UI"
+      ],
+      "preferred": [
+        "TypeScript",
+        "Expo",
+        "Firebase",
+        "Jest",
+        "Android"
+      ],
+      "categories": {
+        "primary": [
+          "JavaScript",
+          "React Native",
+          "REST APIs",
+          "Git"
+        ],
+        "additional": [
+          "Mobile UI",
+          "TypeScript",
+          "Expo",
+          "Firebase",
+          "Jest",
+          "Android"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Build and maintain mobile applications with smooth user experiences, API integrations, and reliable app lifecycle behavior.",
+    "responsibilities": [
+      "Develop reusable mobile screens.",
+      "Integrate backend APIs.",
+      "Debug device-specific issues.",
+      "Improve startup and runtime performance.",
+      "Test on multiple screen sizes."
+    ],
+    "qualifications": [
+      "Working knowledge of JavaScript and related development practices.",
+      "Ability to apply React Native in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-010",
+      "application_method": "Online",
+      "posted_at": "2026-10-08T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Mobile Development",
+        "Mobile App Developer",
+        "Experienced",
+        "India",
+        "JavaScript",
+        "React Native"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-011",
+    "title": "Java Developer",
+    "company": {
+      "name": "NovaTrail Systems",
+      "website": "https://example.com/novatrail",
+      "industry": "Software Development",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Pune",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 550000,
+      "max_salary": 750000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Performance bonus",
+        "Wellness allowance",
+        "Health insurance",
+        "Internet allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Java",
+        "OOP",
+        "SQL",
+        "REST APIs",
+        "Git"
+      ],
+      "preferred": [
+        "Spring Boot",
+        "PostgreSQL",
+        "Docker",
+        "JUnit",
+        "Kafka"
+      ],
+      "categories": {
+        "primary": [
+          "Java",
+          "OOP",
+          "SQL",
+          "REST APIs"
+        ],
+        "additional": [
+          "Git",
+          "Spring Boot",
+          "PostgreSQL",
+          "Docker",
+          "JUnit",
+          "Kafka"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Develop maintainable Java applications and services, contribute to API design, and support testing and production troubleshooting.",
+    "responsibilities": [
+      "Implement Java services.",
+      "Design APIs and data models.",
+      "Write unit and integration tests.",
+      "Review pull requests.",
+      "Investigate defects."
+    ],
+    "qualifications": [
+      "Working knowledge of Java and related development practices.",
+      "Ability to apply OOP in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-011",
+      "application_method": "Online",
+      "posted_at": "2026-10-07T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Java Developer",
+        "Entry-level",
+        "India",
+        "Java",
+        "OOP"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-012",
+    "title": "UI/UX Designer",
+    "company": {
+      "name": "LumenPath Tech",
+      "website": "https://example.com/lumenpath",
+      "industry": "Design",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 0,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Hyderabad"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1100000,
+      "max_salary": 1600000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Mentorship",
+        "Paid leave",
+        "Learning budget",
+        "Internet allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Figma",
+        "Wireframing",
+        "Prototyping",
+        "Visual Design",
+        "User Research"
+      ],
+      "preferred": [
+        "Design Systems",
+        "Accessibility",
+        "Usability Testing",
+        "Adobe Illustrator",
+        "HTML/CSS"
+      ],
+      "categories": {
+        "primary": [
+          "Figma",
+          "Wireframing",
+          "Prototyping",
+          "Visual Design"
+        ],
+        "additional": [
+          "User Research",
+          "Design Systems",
+          "Accessibility",
+          "Usability Testing",
+          "Adobe Illustrator",
+          "HTML/CSS"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Research user needs and design intuitive product flows, wireframes, prototypes, and polished interface systems.",
+    "responsibilities": [
+      "Conduct user research.",
+      "Create wireframes and prototypes.",
+      "Maintain design systems.",
+      "Run usability tests.",
+      "Work with engineering on implementation."
+    ],
+    "qualifications": [
+      "Working knowledge of Figma and related development practices.",
+      "Ability to apply Wireframing in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-012",
+      "application_method": "Online",
+      "posted_at": "2026-10-06T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Design",
+        "UI/UX Designer",
+        "Mid-level",
+        "India",
+        "Figma",
+        "Wireframing"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-013",
+    "title": "Cybersecurity Analyst",
+    "company": {
+      "name": "PixelRoute Software",
+      "website": "https://example.com/pixelroute",
+      "industry": "Cybersecurity",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 1,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Noida",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 500000,
+      "max_salary": 900000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Paid leave",
+        "Flexible working hours",
+        "Mentorship",
+        "Internet allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Networking",
+        "Linux",
+        "Security Fundamentals",
+        "Log Analysis",
+        "Incident Response"
+      ],
+      "preferred": [
+        "SIEM",
+        "Python",
+        "Cloud Security",
+        "Vulnerability Assessment",
+        "OWASP"
+      ],
+      "categories": {
+        "primary": [
+          "Networking",
+          "Linux",
+          "Security Fundamentals",
+          "Log Analysis"
+        ],
+        "additional": [
+          "Incident Response",
+          "SIEM",
+          "Python",
+          "Cloud Security",
+          "Vulnerability Assessment",
+          "OWASP"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": true
+    },
+    "description": "Monitor security signals, investigate suspicious activity, document incidents, and support vulnerability remediation.",
+    "responsibilities": [
+      "Review alerts and logs.",
+      "Triage security incidents.",
+      "Document findings.",
+      "Support vulnerability assessments.",
+      "Recommend defensive controls."
+    ],
+    "qualifications": [
+      "Working knowledge of Networking and related development practices.",
+      "Ability to apply Linux in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-013",
+      "application_method": "Online",
+      "posted_at": "2026-10-05T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Cybersecurity",
+        "Cybersecurity Analyst",
+        "Entry-level",
+        "India",
+        "Networking",
+        "Linux"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-014",
+    "title": "Data Engineer",
+    "company": {
+      "name": "VertexSpring Labs",
+      "website": "https://example.com/vertexspring",
+      "industry": "Data and Analytics",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 2,
+      "max_years": 4,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Ahmedabad"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1500000,
+      "max_salary": 1800000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Learning budget",
+        "Performance bonus",
+        "Wellness allowance",
+        "Internet allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "SQL",
+        "ETL",
+        "Data Modeling",
+        "Git"
+      ],
+      "preferred": [
+        "Apache Spark",
+        "Airflow",
+        "AWS",
+        "Kafka",
+        "dbt"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "SQL",
+          "ETL",
+          "Data Modeling"
+        ],
+        "additional": [
+          "Git",
+          "Apache Spark",
+          "Airflow",
+          "AWS",
+          "Kafka",
+          "dbt"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Build dependable data pipelines and models that make clean, timely data available for analytics and machine learning.",
+    "responsibilities": [
+      "Develop ingestion pipelines.",
+      "Transform and validate data.",
+      "Optimize warehouse queries.",
+      "Monitor pipeline failures.",
+      "Document data lineage."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply SQL in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-014",
+      "application_method": "Online",
+      "posted_at": "2026-10-04T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Data and Analytics",
+        "Data Engineer",
+        "Mid-level",
+        "India",
+        "Python",
+        "SQL"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-015",
+    "title": "Product Analyst",
+    "company": {
+      "name": "Northstar Codeworks",
+      "website": "https://example.com/northstar",
+      "industry": "Product",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 3,
+      "max_years": 5,
+      "level": "Experienced"
+    },
+    "location": {
+      "city": "Kochi",
+      "state": "Kerala",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Kochi"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1700000,
+      "max_salary": 2000000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Mentorship",
+        "Wellness allowance",
+        "Health insurance",
+        "Paid leave"
+      ]
+    },
+    "skills": {
+      "required": [
+        "SQL",
+        "Excel",
+        "Statistics",
+        "Data Visualization",
+        "Communication"
+      ],
+      "preferred": [
+        "Amplitude",
+        "Mixpanel",
+        "Python",
+        "A/B Testing",
+        "Power BI"
+      ],
+      "categories": {
+        "primary": [
+          "SQL",
+          "Excel",
+          "Statistics",
+          "Data Visualization"
+        ],
+        "additional": [
+          "Communication",
+          "Amplitude",
+          "Mixpanel",
+          "Python",
+          "A/B Testing",
+          "Power BI"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Measure product usage, investigate user journeys, and work with product teams to evaluate experiments and prioritize improvements.",
+    "responsibilities": [
+      "Define product metrics.",
+      "Analyze funnels and cohorts.",
+      "Evaluate experiments.",
+      "Build recurring reports.",
+      "Share actionable recommendations."
+    ],
+    "qualifications": [
+      "Working knowledge of SQL and related development practices.",
+      "Ability to apply Excel in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-015",
+      "application_method": "Online",
+      "posted_at": "2026-10-03T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Product",
+        "Product Analyst",
+        "Experienced",
+        "India",
+        "SQL",
+        "Excel"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-016",
+    "title": "Technical Support Engineer",
+    "company": {
+      "name": "QuantLeaf Analytics",
+      "website": "https://example.com/quantleaf",
+      "industry": "IT Support",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 0,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Pune"
+      ]
+    },
+    "compensation": {
+      "min_salary": 700000,
+      "max_salary": 1100000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Wellness allowance",
+        "Learning budget",
+        "Health insurance",
+        "Paid leave"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Troubleshooting",
+        "Linux",
+        "Networking",
+        "SQL",
+        "Communication"
+      ],
+      "preferred": [
+        "Python",
+        "Cloud Platforms",
+        "Docker",
+        "Monitoring",
+        "Ticketing Systems"
+      ],
+      "categories": {
+        "primary": [
+          "Troubleshooting",
+          "Linux",
+          "Networking",
+          "SQL"
+        ],
+        "additional": [
+          "Communication",
+          "Python",
+          "Cloud Platforms",
+          "Docker",
+          "Monitoring",
+          "Ticketing Systems"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Resolve technical issues, investigate application and infrastructure behavior, and communicate clear updates to customers and engineering teams.",
+    "responsibilities": [
+      "Investigate support tickets.",
+      "Reproduce and diagnose issues.",
+      "Use logs and SQL to troubleshoot.",
+      "Escalate defects with evidence.",
+      "Maintain knowledge-base articles."
+    ],
+    "qualifications": [
+      "Working knowledge of Troubleshooting and related development practices.",
+      "Ability to apply Linux in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-016",
+      "application_method": "Online",
+      "posted_at": "2026-10-02T09:00:00Z",
+      "application_deadline": "2026-11-16T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "IT Support",
+        "Technical Support Engineer",
+        "Mid-level",
+        "India",
+        "Troubleshooting",
+        "Linux"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-017",
+    "title": "Go Backend Engineer",
+    "company": {
+      "name": "Silverline Digital",
+      "website": "https://example.com/silverline",
+      "industry": "Software Development",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 0,
+      "max_years": 1,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Hyderabad"
+      ]
+    },
+    "compensation": {
+      "min_salary": 800000,
+      "max_salary": 1200000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Performance bonus",
+        "Mentorship",
+        "Internet allowance",
+        "Wellness allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Go",
+        "REST APIs",
+        "SQL",
+        "Git",
+        "Concurrency"
+      ],
+      "preferred": [
+        "PostgreSQL",
+        "Docker",
+        "Kubernetes",
+        "gRPC",
+        "Redis",
+        "TypeScript"
+      ],
+      "categories": {
+        "primary": [
+          "Go",
+          "REST APIs",
+          "SQL",
+          "Git"
+        ],
+        "additional": [
+          "Concurrency",
+          "PostgreSQL",
+          "Docker",
+          "Kubernetes",
+          "gRPC",
+          "Redis",
+          "TypeScript"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": true
+    },
+    "description": "Build efficient Go services and APIs, work with relational databases, and contribute to reliable distributed systems.",
+    "responsibilities": [
+      "Develop Go services.",
+      "Implement API endpoints.",
+      "Write tests and benchmarks.",
+      "Review database queries.",
+      "Monitor service reliability."
+    ],
+    "qualifications": [
+      "Working knowledge of Go and related development practices.",
+      "Ability to apply REST APIs in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-017",
+      "application_method": "Online",
+      "posted_at": "2026-10-01T09:00:00Z",
+      "application_deadline": "2026-10-31T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Go Backend Engineer",
+        "Entry-level",
+        "India",
+        "Go",
+        "REST APIs"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-018",
+    "title": "Business Intelligence Developer",
+    "company": {
+      "name": "PrismOak Technologies",
+      "website": "https://example.com/prismoak",
+      "industry": "Data and Analytics",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 1,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Noida",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1700000,
+      "max_salary": 2200000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Learning budget",
+        "Internet allowance",
+        "Paid leave",
+        "Mentorship"
+      ]
+    },
+    "skills": {
+      "required": [
+        "SQL",
+        "Power BI",
+        "Data Modeling",
+        "Excel",
+        "Data Visualization"
+      ],
+      "preferred": [
+        "DAX",
+        "Python",
+        "ETL",
+        "Azure",
+        "Tableau"
+      ],
+      "categories": {
+        "primary": [
+          "SQL",
+          "Power BI",
+          "Data Modeling",
+          "Excel"
+        ],
+        "additional": [
+          "Data Visualization",
+          "DAX",
+          "Python",
+          "ETL",
+          "Azure",
+          "Tableau"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Create and maintain data models, dashboards, and reporting solutions that help teams monitor operational and business performance.",
+    "responsibilities": [
+      "Build BI dashboards.",
+      "Create data models and measures.",
+      "Validate reporting data.",
+      "Optimize report performance.",
+      "Gather stakeholder requirements."
+    ],
+    "qualifications": [
+      "Working knowledge of SQL and related development practices.",
+      "Ability to apply Power BI in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-018",
+      "application_method": "Online",
+      "posted_at": "2026-09-30T09:00:00Z",
+      "application_deadline": "2026-10-31T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Data and Analytics",
+        "Business Intelligence Developer",
+        "Mid-level",
+        "India",
+        "SQL",
+        "Power BI"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-019",
+    "title": "Frontend Intern",
+    "company": {
+      "name": "BrightForge Tech",
+      "website": "https://example.com/brightforge",
+      "industry": "Internship",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Internship",
+    "employment_type": "Fixed-term",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 0,
+      "max_years": 0,
+      "level": "Internship"
+    },
+    "location": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Ahmedabad"
+      ]
+    },
+    "compensation": {
+      "min_salary": 20000,
+      "max_salary": 35000,
+      "currency": "INR",
+      "salary_period": "month",
+      "ctc": false,
+      "benefits": [
+        "Flexible working hours",
+        "Mentorship",
+        "Internet allowance",
+        "Performance bonus"
+      ]
+    },
+    "skills": {
+      "required": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React.js",
+        "Git"
+      ],
+      "preferred": [
+        "TypeScript",
+        "Vite",
+        "REST APIs",
+        "Accessibility",
+        "Figma"
+      ],
+      "categories": {
+        "primary": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "React.js"
+        ],
+        "additional": [
+          "Git",
+          "TypeScript",
+          "Vite",
+          "REST APIs",
+          "Accessibility",
+          "Figma"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Currently pursuing a bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Support the frontend team by implementing components, fixing UI bugs, and learning production web development practices.",
+    "responsibilities": [
+      "Build small UI components.",
+      "Fix styling and responsive issues.",
+      "Integrate simple API responses.",
+      "Write clear commit messages.",
+      "Participate in code reviews."
+    ],
+    "qualifications": [
+      "Working knowledge of HTML and related development practices.",
+      "Ability to apply CSS in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-019",
+      "application_method": "Online",
+      "posted_at": "2026-09-29T09:00:00Z",
+      "application_deadline": "2026-10-31T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Internship",
+        "Frontend Intern",
+        "India",
+        "HTML",
+        "CSS"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-020",
+    "title": "AI Research Intern",
+    "company": {
+      "name": "Redwood Logic",
+      "website": "https://example.com/redwoodlogic",
+      "industry": "Internship",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Internship",
+    "employment_type": "Fixed-term",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 0,
+      "max_years": 0,
+      "level": "Internship"
+    },
+    "location": {
+      "city": "Kochi",
+      "state": "Kerala",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Kochi",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 20000,
+      "max_salary": 35000,
+      "currency": "INR",
+      "salary_period": "month",
+      "ctc": false,
+      "benefits": [
+        "Wellness allowance",
+        "Learning budget",
+        "Paid leave",
+        "Mentorship"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "Linear Algebra",
+        "Probability",
+        "Machine Learning",
+        "NumPy"
+      ],
+      "preferred": [
+        "PyTorch",
+        "Transformers",
+        "Pandas",
+        "Jupyter",
+        "Research Writing"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "Linear Algebra",
+          "Probability",
+          "Machine Learning"
+        ],
+        "additional": [
+          "NumPy",
+          "PyTorch",
+          "Transformers",
+          "Pandas",
+          "Jupyter",
+          "Research Writing"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Currently pursuing a bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Assist with experiments, literature reviews, dataset preparation, and evaluation of machine learning approaches under researcher guidance.",
+    "responsibilities": [
+      "Review relevant papers.",
+      "Prepare datasets.",
+      "Run reproducible experiments.",
+      "Compare evaluation metrics.",
+      "Summarize findings."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply Linear Algebra in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-020",
+      "application_method": "Online",
+      "posted_at": "2026-09-28T09:00:00Z",
+      "application_deadline": "2026-10-31T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Internship",
+        "AI Research Intern",
+        "India",
+        "Python",
+        "Linear Algebra"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-021",
+    "title": "Full Stack Developer",
+    "company": {
+      "name": "BluePeak Systems",
+      "website": "https://example.com/bluepeak",
+      "industry": "Software Development",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 0,
+      "max_years": 1,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Mumbai"
+      ]
+    },
+    "compensation": {
+      "min_salary": 750000,
+      "max_salary": 1250000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Paid leave",
+        "Wellness allowance",
+        "Health insurance",
+        "Mentorship"
+      ]
+    },
+    "skills": {
+      "required": [
+        "JavaScript",
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "REST APIs",
+        "Git"
+      ],
+      "preferred": [
+        "TypeScript",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "Next.js"
+      ],
+      "categories": {
+        "primary": [
+          "JavaScript",
+          "React.js",
+          "Node.js",
+          "Express.js"
+        ],
+        "additional": [
+          "MongoDB",
+          "REST APIs",
+          "Git",
+          "TypeScript",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Next.js"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": true
+    },
+    "description": "Build and maintain responsive web applications across frontend and backend layers. Develop REST APIs, integrate databases, write tests, and collaborate with product and design teams.",
+    "responsibilities": [
+      "Build responsive React interfaces.",
+      "Develop backend services with Node.js and Express.js.",
+      "Design and query databases.",
+      "Integrate and document REST APIs.",
+      "Review code and fix bugs."
+    ],
+    "qualifications": [
+      "Working knowledge of JavaScript and related development practices.",
+      "Ability to apply React.js in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-021",
+      "application_method": "Online",
+      "posted_at": "2026-10-17T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Full Stack Developer",
+        "Entry-level",
+        "India",
+        "JavaScript",
+        "React.js"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-022",
+    "title": "Frontend Developer",
+    "company": {
+      "name": "MapleGrid Innovations",
+      "website": "https://example.com/maplegrid",
+      "industry": "Software Development",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Chennai",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 450000,
+      "max_salary": 750000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Wellness allowance",
+        "Flexible working hours",
+        "Health insurance",
+        "Performance bonus"
+      ]
+    },
+    "skills": {
+      "required": [
+        "JavaScript",
+        "React.js",
+        "HTML",
+        "CSS",
+        "REST APIs",
+        "Git"
+      ],
+      "preferred": [
+        "TypeScript",
+        "Next.js",
+        "Jest",
+        "Accessibility",
+        "Vite"
+      ],
+      "categories": {
+        "primary": [
+          "JavaScript",
+          "React.js",
+          "HTML",
+          "CSS"
+        ],
+        "additional": [
+          "REST APIs",
+          "Git",
+          "TypeScript",
+          "Next.js",
+          "Jest",
+          "Accessibility",
+          "Vite"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Create accessible, responsive user interfaces and reusable components. Work with designers and backend engineers to deliver reliable web experiences.",
+    "responsibilities": [
+      "Implement UI components.",
+      "Ensure responsive layouts and accessibility.",
+      "Integrate frontend applications with APIs.",
+      "Optimize performance.",
+      "Write component tests."
+    ],
+    "qualifications": [
+      "Working knowledge of JavaScript and related development practices.",
+      "Ability to apply React.js in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-022",
+      "application_method": "Online",
+      "posted_at": "2026-10-16T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Frontend Developer",
+        "Entry-level",
+        "India",
+        "JavaScript",
+        "React.js"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-023",
+    "title": "Backend Developer",
+    "company": {
+      "name": "EverPeak Data",
+      "website": "https://example.com/everpeak",
+      "industry": "Software Development",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 1,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Gurugram",
+      "state": "Haryana",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Gurugram"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1300000,
+      "max_salary": 1800000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Flexible working hours",
+        "Internet allowance",
+        "Health insurance",
+        "Mentorship"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Node.js",
+        "Express.js",
+        "SQL",
+        "REST APIs",
+        "Git",
+        "Authentication"
+      ],
+      "preferred": [
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "AWS",
+        "Message Queues"
+      ],
+      "categories": {
+        "primary": [
+          "Node.js",
+          "Express.js",
+          "SQL",
+          "REST APIs"
+        ],
+        "additional": [
+          "Git",
+          "Authentication",
+          "PostgreSQL",
+          "Redis",
+          "Docker",
+          "AWS",
+          "Message Queues"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Design secure and scalable backend services, data models, and APIs. Improve reliability, performance, and observability across services.",
+    "responsibilities": [
+      "Build and maintain APIs.",
+      "Design database schemas and queries.",
+      "Implement authentication and authorization.",
+      "Write tests and documentation.",
+      "Monitor and troubleshoot services."
+    ],
+    "qualifications": [
+      "Working knowledge of Node.js and related development practices.",
+      "Ability to apply Express.js in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-023",
+      "application_method": "Online",
+      "posted_at": "2026-10-15T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Backend Developer",
+        "Mid-level",
+        "India",
+        "Node.js",
+        "Express.js"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-024",
+    "title": "Python Developer",
+    "company": {
+      "name": "CloudHarbor Labs",
+      "website": "https://example.com/cloudharbor",
+      "industry": "Software Development",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 2,
+      "max_years": 5,
+      "level": "Experienced"
+    },
+    "location": {
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Jaipur"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1700000,
+      "max_salary": 2100000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Mentorship",
+        "Health insurance",
+        "Learning budget",
+        "Performance bonus"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "SQL",
+        "REST APIs",
+        "Git",
+        "Unit Testing"
+      ],
+      "preferred": [
+        "FastAPI",
+        "Django",
+        "PostgreSQL",
+        "Docker",
+        "Linux"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "SQL",
+          "REST APIs",
+          "Git"
+        ],
+        "additional": [
+          "Unit Testing",
+          "FastAPI",
+          "Django",
+          "PostgreSQL",
+          "Docker",
+          "Linux"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Develop Python services and automation tools, connect applications to databases, and maintain dependable, tested code.",
+    "responsibilities": [
+      "Develop Python modules and services.",
+      "Build or integrate APIs.",
+      "Write automated tests.",
+      "Optimize database operations.",
+      "Document implementation details."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply SQL in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-024",
+      "application_method": "Online",
+      "posted_at": "2026-10-14T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Python Developer",
+        "Experienced",
+        "India",
+        "Python",
+        "SQL"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-025",
+    "title": "Data Analyst",
+    "company": {
+      "name": "CedarWave Technologies",
+      "website": "https://example.com/cedarwave",
+      "industry": "Data and Analytics",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 3,
+      "max_years": 4,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Nagpur",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Nagpur"
+      ]
+    },
+    "compensation": {
+      "min_salary": 900000,
+      "max_salary": 1400000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Health insurance",
+        "Mentorship",
+        "Wellness allowance",
+        "Learning budget"
+      ]
+    },
+    "skills": {
+      "required": [
+        "SQL",
+        "Excel",
+        "Python",
+        "Data Visualization",
+        "Statistics"
+      ],
+      "preferred": [
+        "Power BI",
+        "Tableau",
+        "Pandas",
+        "PostgreSQL",
+        "A/B Testing"
+      ],
+      "categories": {
+        "primary": [
+          "SQL",
+          "Excel",
+          "Python",
+          "Data Visualization"
+        ],
+        "additional": [
+          "Statistics",
+          "Power BI",
+          "Tableau",
+          "Pandas",
+          "PostgreSQL",
+          "A/B Testing"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": true
+    },
+    "description": "Analyze business datasets, build dashboards, and translate findings into practical recommendations for stakeholders.",
+    "responsibilities": [
+      "Clean and validate datasets.",
+      "Write SQL queries.",
+      "Build dashboards and reports.",
+      "Identify trends and anomalies.",
+      "Present insights to stakeholders."
+    ],
+    "qualifications": [
+      "Working knowledge of SQL and related development practices.",
+      "Ability to apply Excel in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-025",
+      "application_method": "Online",
+      "posted_at": "2026-10-13T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Data and Analytics",
+        "Data Analyst",
+        "Mid-level",
+        "India",
+        "SQL",
+        "Excel"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-026",
+    "title": "Machine Learning Engineer",
+    "company": {
+      "name": "Ironwood Apps",
+      "website": "https://example.com/ironwood",
+      "industry": "AI and Machine Learning",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Mumbai"
+      ]
+    },
+    "compensation": {
+      "min_salary": 750000,
+      "max_salary": 1050000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Paid leave",
+        "Wellness allowance",
+        "Mentorship",
+        "Learning budget"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Scikit-learn",
+        "Statistics",
+        "Git"
+      ],
+      "preferred": [
+        "PyTorch",
+        "TensorFlow",
+        "MLflow",
+        "Docker",
+        "FastAPI"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "Pandas",
+          "NumPy",
+          "Scikit-learn"
+        ],
+        "additional": [
+          "Statistics",
+          "Git",
+          "PyTorch",
+          "TensorFlow",
+          "MLflow",
+          "Docker",
+          "FastAPI"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Develop, evaluate, and deploy machine learning models. Prepare training data, track experiments, and collaborate on production ML systems.",
+    "responsibilities": [
+      "Prepare and validate datasets.",
+      "Train and evaluate models.",
+      "Track experiments and metrics.",
+      "Build inference pipelines.",
+      "Document model limitations."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply Pandas in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-026",
+      "application_method": "Online",
+      "posted_at": "2026-10-12T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "AI and Machine Learning",
+        "Machine Learning Engineer",
+        "Entry-level",
+        "India",
+        "Python",
+        "Pandas"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-027",
+    "title": "DevOps Engineer",
+    "company": {
+      "name": "Nexora Digital",
+      "website": "https://example.com/nexora",
+      "industry": "Cloud and DevOps",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Chennai",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 850000,
+      "max_salary": 1150000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Learning budget",
+        "Internet allowance",
+        "Paid leave",
+        "Flexible working hours"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Linux",
+        "Docker",
+        "CI/CD",
+        "Git",
+        "Networking"
+      ],
+      "preferred": [
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+        "Prometheus",
+        "Python"
+      ],
+      "categories": {
+        "primary": [
+          "Linux",
+          "Docker",
+          "CI/CD",
+          "Git"
+        ],
+        "additional": [
+          "Networking",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "Prometheus",
+          "Python"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Automate build, test, and deployment workflows while improving infrastructure reliability, monitoring, and operational practices.",
+    "responsibilities": [
+      "Maintain CI/CD pipelines.",
+      "Containerize applications.",
+      "Automate infrastructure tasks.",
+      "Monitor system health.",
+      "Troubleshoot deployment issues."
+    ],
+    "qualifications": [
+      "Working knowledge of Linux and related development practices.",
+      "Ability to apply Docker in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-027",
+      "application_method": "Online",
+      "posted_at": "2026-10-11T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Cloud and DevOps",
+        "DevOps Engineer",
+        "Entry-level",
+        "India",
+        "Linux",
+        "Docker"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-028",
+    "title": "Cloud Engineer",
+    "company": {
+      "name": "NovaTrail Systems",
+      "website": "https://example.com/novatrail",
+      "industry": "Cloud and DevOps",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 1,
+      "max_years": 4,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Gurugram",
+      "state": "Haryana",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Gurugram"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1500000,
+      "max_salary": 1700000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Mentorship",
+        "Performance bonus",
+        "Health insurance",
+        "Internet allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "AWS",
+        "Linux",
+        "Networking",
+        "IAM",
+        "Git"
+      ],
+      "preferred": [
+        "Terraform",
+        "Docker",
+        "Kubernetes",
+        "Python",
+        "CloudWatch"
+      ],
+      "categories": {
+        "primary": [
+          "AWS",
+          "Linux",
+          "Networking",
+          "IAM"
+        ],
+        "additional": [
+          "Git",
+          "Terraform",
+          "Docker",
+          "Kubernetes",
+          "Python",
+          "CloudWatch"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Help design, deploy, and operate secure cloud infrastructure with appropriate monitoring, access controls, and cost awareness.",
+    "responsibilities": [
+      "Provision cloud resources.",
+      "Configure access policies.",
+      "Monitor performance and costs.",
+      "Automate repeatable tasks.",
+      "Document infrastructure."
+    ],
+    "qualifications": [
+      "Working knowledge of AWS and related development practices.",
+      "Ability to apply Linux in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-028",
+      "application_method": "Online",
+      "posted_at": "2026-10-10T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Cloud and DevOps",
+        "Cloud Engineer",
+        "Mid-level",
+        "India",
+        "AWS",
+        "Linux"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-029",
+    "title": "QA Automation Engineer",
+    "company": {
+      "name": "LumenPath Tech",
+      "website": "https://example.com/lumenpath",
+      "industry": "Quality Assurance",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 2,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Jaipur",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1200000,
+      "max_salary": 1600000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Performance bonus",
+        "Health insurance",
+        "Paid leave",
+        "Flexible working hours"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Test Automation",
+        "JavaScript",
+        "API Testing",
+        "Git",
+        "SQL"
+      ],
+      "preferred": [
+        "Playwright",
+        "Cypress",
+        "Selenium",
+        "Jest",
+        "CI/CD"
+      ],
+      "categories": {
+        "primary": [
+          "Test Automation",
+          "JavaScript",
+          "API Testing",
+          "Git"
+        ],
+        "additional": [
+          "SQL",
+          "Playwright",
+          "Cypress",
+          "Selenium",
+          "Jest",
+          "CI/CD"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": true
+    },
+    "description": "Create automated test suites for web applications and APIs, investigate defects, and help teams improve release quality.",
+    "responsibilities": [
+      "Write and maintain automated tests.",
+      "Test APIs and database behavior.",
+      "Report reproducible defects.",
+      "Integrate tests into CI pipelines.",
+      "Collaborate on test strategy."
+    ],
+    "qualifications": [
+      "Working knowledge of Test Automation and related development practices.",
+      "Ability to apply JavaScript in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-029",
+      "application_method": "Online",
+      "posted_at": "2026-10-09T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Quality Assurance",
+        "QA Automation Engineer",
+        "Mid-level",
+        "India",
+        "Test Automation",
+        "JavaScript"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-030",
+    "title": "Mobile App Developer",
+    "company": {
+      "name": "PixelRoute Software",
+      "website": "https://example.com/pixelroute",
+      "industry": "Mobile Development",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 3,
+      "max_years": 5,
+      "level": "Experienced"
+    },
+    "location": {
+      "city": "Nagpur",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Nagpur"
+      ]
+    },
+    "compensation": {
+      "min_salary": 800000,
+      "max_salary": 1000000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Internet allowance",
+        "Wellness allowance",
+        "Health insurance",
+        "Flexible working hours"
+      ]
+    },
+    "skills": {
+      "required": [
+        "JavaScript",
+        "React Native",
+        "REST APIs",
+        "Git",
+        "Mobile UI"
+      ],
+      "preferred": [
+        "TypeScript",
+        "Expo",
+        "Firebase",
+        "Jest",
+        "Android"
+      ],
+      "categories": {
+        "primary": [
+          "JavaScript",
+          "React Native",
+          "REST APIs",
+          "Git"
+        ],
+        "additional": [
+          "Mobile UI",
+          "TypeScript",
+          "Expo",
+          "Firebase",
+          "Jest",
+          "Android"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Build and maintain mobile applications with smooth user experiences, API integrations, and reliable app lifecycle behavior.",
+    "responsibilities": [
+      "Develop reusable mobile screens.",
+      "Integrate backend APIs.",
+      "Debug device-specific issues.",
+      "Improve startup and runtime performance.",
+      "Test on multiple screen sizes."
+    ],
+    "qualifications": [
+      "Working knowledge of JavaScript and related development practices.",
+      "Ability to apply React Native in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-030",
+      "application_method": "Online",
+      "posted_at": "2026-10-08T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Mobile Development",
+        "Mobile App Developer",
+        "Experienced",
+        "India",
+        "JavaScript",
+        "React Native"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-031",
+    "title": "Java Developer",
+    "company": {
+      "name": "VertexSpring Labs",
+      "website": "https://example.com/vertexspring",
+      "industry": "Software Development",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Mumbai",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 450000,
+      "max_salary": 750000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Internet allowance",
+        "Flexible working hours",
+        "Paid leave",
+        "Learning budget"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Java",
+        "OOP",
+        "SQL",
+        "REST APIs",
+        "Git"
+      ],
+      "preferred": [
+        "Spring Boot",
+        "PostgreSQL",
+        "Docker",
+        "JUnit",
+        "Kafka"
+      ],
+      "categories": {
+        "primary": [
+          "Java",
+          "OOP",
+          "SQL",
+          "REST APIs"
+        ],
+        "additional": [
+          "Git",
+          "Spring Boot",
+          "PostgreSQL",
+          "Docker",
+          "JUnit",
+          "Kafka"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Develop maintainable Java applications and services, contribute to API design, and support testing and production troubleshooting.",
+    "responsibilities": [
+      "Implement Java services.",
+      "Design APIs and data models.",
+      "Write unit and integration tests.",
+      "Review pull requests.",
+      "Investigate defects."
+    ],
+    "qualifications": [
+      "Working knowledge of Java and related development practices.",
+      "Ability to apply OOP in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-031",
+      "application_method": "Online",
+      "posted_at": "2026-10-07T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Java Developer",
+        "Entry-level",
+        "India",
+        "Java",
+        "OOP"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-032",
+    "title": "UI/UX Designer",
+    "company": {
+      "name": "Northstar Codeworks",
+      "website": "https://example.com/northstar",
+      "industry": "Design",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 0,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Chennai"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1500000,
+      "max_salary": 2000000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Performance bonus",
+        "Flexible working hours",
+        "Mentorship",
+        "Paid leave"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Figma",
+        "Wireframing",
+        "Prototyping",
+        "Visual Design",
+        "User Research"
+      ],
+      "preferred": [
+        "Design Systems",
+        "Accessibility",
+        "Usability Testing",
+        "Adobe Illustrator",
+        "HTML/CSS"
+      ],
+      "categories": {
+        "primary": [
+          "Figma",
+          "Wireframing",
+          "Prototyping",
+          "Visual Design"
+        ],
+        "additional": [
+          "User Research",
+          "Design Systems",
+          "Accessibility",
+          "Usability Testing",
+          "Adobe Illustrator",
+          "HTML/CSS"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Research user needs and design intuitive product flows, wireframes, prototypes, and polished interface systems.",
+    "responsibilities": [
+      "Conduct user research.",
+      "Create wireframes and prototypes.",
+      "Maintain design systems.",
+      "Run usability tests.",
+      "Work with engineering on implementation."
+    ],
+    "qualifications": [
+      "Working knowledge of Figma and related development practices.",
+      "Ability to apply Wireframing in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-032",
+      "application_method": "Online",
+      "posted_at": "2026-10-06T09:00:00Z",
+      "application_deadline": "2026-11-20T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Design",
+        "UI/UX Designer",
+        "Mid-level",
+        "India",
+        "Figma",
+        "Wireframing"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-033",
+    "title": "Cybersecurity Analyst",
+    "company": {
+      "name": "QuantLeaf Analytics",
+      "website": "https://example.com/quantleaf",
+      "industry": "Cybersecurity",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 1,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Gurugram",
+      "state": "Haryana",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Gurugram"
+      ]
+    },
+    "compensation": {
+      "min_salary": 550000,
+      "max_salary": 1050000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Mentorship",
+        "Performance bonus",
+        "Flexible working hours",
+        "Wellness allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Networking",
+        "Linux",
+        "Security Fundamentals",
+        "Log Analysis",
+        "Incident Response"
+      ],
+      "preferred": [
+        "SIEM",
+        "Python",
+        "Cloud Security",
+        "Vulnerability Assessment",
+        "OWASP"
+      ],
+      "categories": {
+        "primary": [
+          "Networking",
+          "Linux",
+          "Security Fundamentals",
+          "Log Analysis"
+        ],
+        "additional": [
+          "Incident Response",
+          "SIEM",
+          "Python",
+          "Cloud Security",
+          "Vulnerability Assessment",
+          "OWASP"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": true
+    },
+    "description": "Monitor security signals, investigate suspicious activity, document incidents, and support vulnerability remediation.",
+    "responsibilities": [
+      "Review alerts and logs.",
+      "Triage security incidents.",
+      "Document findings.",
+      "Support vulnerability assessments.",
+      "Recommend defensive controls."
+    ],
+    "qualifications": [
+      "Working knowledge of Networking and related development practices.",
+      "Ability to apply Linux in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-033",
+      "application_method": "Online",
+      "posted_at": "2026-10-05T09:00:00Z",
+      "application_deadline": "2026-11-04T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Cybersecurity",
+        "Cybersecurity Analyst",
+        "Entry-level",
+        "India",
+        "Networking",
+        "Linux"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-034",
+    "title": "Data Engineer",
+    "company": {
+      "name": "Silverline Digital",
+      "website": "https://example.com/silverline",
+      "industry": "Data and Analytics",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 2,
+      "max_years": 4,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Jaipur"
+      ]
+    },
+    "compensation": {
+      "min_salary": 800000,
+      "max_salary": 1100000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Performance bonus",
+        "Health insurance",
+        "Learning budget",
+        "Wellness allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "SQL",
+        "ETL",
+        "Data Modeling",
+        "Git"
+      ],
+      "preferred": [
+        "Apache Spark",
+        "Airflow",
+        "AWS",
+        "Kafka",
+        "dbt"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "SQL",
+          "ETL",
+          "Data Modeling"
+        ],
+        "additional": [
+          "Git",
+          "Apache Spark",
+          "Airflow",
+          "AWS",
+          "Kafka",
+          "dbt"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Build dependable data pipelines and models that make clean, timely data available for analytics and machine learning.",
+    "responsibilities": [
+      "Develop ingestion pipelines.",
+      "Transform and validate data.",
+      "Optimize warehouse queries.",
+      "Monitor pipeline failures.",
+      "Document data lineage."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply SQL in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-034",
+      "application_method": "Online",
+      "posted_at": "2026-10-04T09:00:00Z",
+      "application_deadline": "2026-11-04T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Data and Analytics",
+        "Data Engineer",
+        "Mid-level",
+        "India",
+        "Python",
+        "SQL"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-035",
+    "title": "Product Analyst",
+    "company": {
+      "name": "PrismOak Technologies",
+      "website": "https://example.com/prismoak",
+      "industry": "Product",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 3,
+      "max_years": 5,
+      "level": "Experienced"
+    },
+    "location": {
+      "city": "Nagpur",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Nagpur"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1600000,
+      "max_salary": 1900000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Performance bonus",
+        "Health insurance",
+        "Wellness allowance",
+        "Mentorship"
+      ]
+    },
+    "skills": {
+      "required": [
+        "SQL",
+        "Excel",
+        "Statistics",
+        "Data Visualization",
+        "Communication"
+      ],
+      "preferred": [
+        "Amplitude",
+        "Mixpanel",
+        "Python",
+        "A/B Testing",
+        "Power BI"
+      ],
+      "categories": {
+        "primary": [
+          "SQL",
+          "Excel",
+          "Statistics",
+          "Data Visualization"
+        ],
+        "additional": [
+          "Communication",
+          "Amplitude",
+          "Mixpanel",
+          "Python",
+          "A/B Testing",
+          "Power BI"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Measure product usage, investigate user journeys, and work with product teams to evaluate experiments and prioritize improvements.",
+    "responsibilities": [
+      "Define product metrics.",
+      "Analyze funnels and cohorts.",
+      "Evaluate experiments.",
+      "Build recurring reports.",
+      "Share actionable recommendations."
+    ],
+    "qualifications": [
+      "Working knowledge of SQL and related development practices.",
+      "Ability to apply Excel in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-035",
+      "application_method": "Online",
+      "posted_at": "2026-10-03T09:00:00Z",
+      "application_deadline": "2026-11-04T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Product",
+        "Product Analyst",
+        "Experienced",
+        "India",
+        "SQL",
+        "Excel"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-036",
+    "title": "Technical Support Engineer",
+    "company": {
+      "name": "BrightForge Tech",
+      "website": "https://example.com/brightforge",
+      "industry": "IT Support",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 0,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Mumbai",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1000000,
+      "max_salary": 1200000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Health insurance",
+        "Wellness allowance",
+        "Learning budget",
+        "Internet allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Troubleshooting",
+        "Linux",
+        "Networking",
+        "SQL",
+        "Communication"
+      ],
+      "preferred": [
+        "Python",
+        "Cloud Platforms",
+        "Docker",
+        "Monitoring",
+        "Ticketing Systems"
+      ],
+      "categories": {
+        "primary": [
+          "Troubleshooting",
+          "Linux",
+          "Networking",
+          "SQL"
+        ],
+        "additional": [
+          "Communication",
+          "Python",
+          "Cloud Platforms",
+          "Docker",
+          "Monitoring",
+          "Ticketing Systems"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Resolve technical issues, investigate application and infrastructure behavior, and communicate clear updates to customers and engineering teams.",
+    "responsibilities": [
+      "Investigate support tickets.",
+      "Reproduce and diagnose issues.",
+      "Use logs and SQL to troubleshoot.",
+      "Escalate defects with evidence.",
+      "Maintain knowledge-base articles."
+    ],
+    "qualifications": [
+      "Working knowledge of Troubleshooting and related development practices.",
+      "Ability to apply Linux in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-036",
+      "application_method": "Online",
+      "posted_at": "2026-10-02T09:00:00Z",
+      "application_deadline": "2026-11-04T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "IT Support",
+        "Technical Support Engineer",
+        "Mid-level",
+        "India",
+        "Troubleshooting",
+        "Linux"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-037",
+    "title": "Go Backend Engineer",
+    "company": {
+      "name": "Redwood Logic",
+      "website": "https://example.com/redwoodlogic",
+      "industry": "Software Development",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 0,
+      "max_years": 1,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Chennai"
+      ]
+    },
+    "compensation": {
+      "min_salary": 750000,
+      "max_salary": 1050000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Flexible working hours",
+        "Mentorship",
+        "Performance bonus",
+        "Paid leave"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Go",
+        "REST APIs",
+        "SQL",
+        "Git",
+        "Concurrency"
+      ],
+      "preferred": [
+        "PostgreSQL",
+        "Docker",
+        "Kubernetes",
+        "gRPC",
+        "Redis",
+        "TypeScript"
+      ],
+      "categories": {
+        "primary": [
+          "Go",
+          "REST APIs",
+          "SQL",
+          "Git"
+        ],
+        "additional": [
+          "Concurrency",
+          "PostgreSQL",
+          "Docker",
+          "Kubernetes",
+          "gRPC",
+          "Redis",
+          "TypeScript"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": true
+    },
+    "description": "Build efficient Go services and APIs, work with relational databases, and contribute to reliable distributed systems.",
+    "responsibilities": [
+      "Develop Go services.",
+      "Implement API endpoints.",
+      "Write tests and benchmarks.",
+      "Review database queries.",
+      "Monitor service reliability."
+    ],
+    "qualifications": [
+      "Working knowledge of Go and related development practices.",
+      "Ability to apply REST APIs in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-037",
+      "application_method": "Online",
+      "posted_at": "2026-10-01T09:00:00Z",
+      "application_deadline": "2026-11-04T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Go Backend Engineer",
+        "Entry-level",
+        "India",
+        "Go",
+        "REST APIs"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-038",
+    "title": "Business Intelligence Developer",
+    "company": {
+      "name": "AsterByte Technologies",
+      "website": "https://example.com/asterbyte",
+      "industry": "Data and Analytics",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 1,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Gurugram",
+      "state": "Haryana",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Gurugram",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1500000,
+      "max_salary": 1800000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Internet allowance",
+        "Paid leave",
+        "Performance bonus",
+        "Mentorship"
+      ]
+    },
+    "skills": {
+      "required": [
+        "SQL",
+        "Power BI",
+        "Data Modeling",
+        "Excel",
+        "Data Visualization"
+      ],
+      "preferred": [
+        "DAX",
+        "Python",
+        "ETL",
+        "Azure",
+        "Tableau"
+      ],
+      "categories": {
+        "primary": [
+          "SQL",
+          "Power BI",
+          "Data Modeling",
+          "Excel"
+        ],
+        "additional": [
+          "Data Visualization",
+          "DAX",
+          "Python",
+          "ETL",
+          "Azure",
+          "Tableau"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Create and maintain data models, dashboards, and reporting solutions that help teams monitor operational and business performance.",
+    "responsibilities": [
+      "Build BI dashboards.",
+      "Create data models and measures.",
+      "Validate reporting data.",
+      "Optimize report performance.",
+      "Gather stakeholder requirements."
+    ],
+    "qualifications": [
+      "Working knowledge of SQL and related development practices.",
+      "Ability to apply Power BI in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-038",
+      "application_method": "Online",
+      "posted_at": "2026-09-30T09:00:00Z",
+      "application_deadline": "2026-11-04T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Data and Analytics",
+        "Business Intelligence Developer",
+        "Mid-level",
+        "India",
+        "SQL",
+        "Power BI"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-039",
+    "title": "Frontend Intern",
+    "company": {
+      "name": "OrbitStack Solutions",
+      "website": "https://example.com/orbitstack",
+      "industry": "Internship",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Internship",
+    "employment_type": "Fixed-term",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 0,
+      "max_years": 0,
+      "level": "Internship"
+    },
+    "location": {
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Jaipur"
+      ]
+    },
+    "compensation": {
+      "min_salary": 10000,
+      "max_salary": 20000,
+      "currency": "INR",
+      "salary_period": "month",
+      "ctc": false,
+      "benefits": [
+        "Paid leave",
+        "Health insurance",
+        "Mentorship",
+        "Performance bonus"
+      ]
+    },
+    "skills": {
+      "required": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React.js",
+        "Git"
+      ],
+      "preferred": [
+        "TypeScript",
+        "Vite",
+        "REST APIs",
+        "Accessibility",
+        "Figma"
+      ],
+      "categories": {
+        "primary": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "React.js"
+        ],
+        "additional": [
+          "Git",
+          "TypeScript",
+          "Vite",
+          "REST APIs",
+          "Accessibility",
+          "Figma"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Currently pursuing a bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Support the frontend team by implementing components, fixing UI bugs, and learning production web development practices.",
+    "responsibilities": [
+      "Build small UI components.",
+      "Fix styling and responsive issues.",
+      "Integrate simple API responses.",
+      "Write clear commit messages.",
+      "Participate in code reviews."
+    ],
+    "qualifications": [
+      "Working knowledge of HTML and related development practices.",
+      "Ability to apply CSS in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-039",
+      "application_method": "Online",
+      "posted_at": "2026-09-29T09:00:00Z",
+      "application_deadline": "2026-11-04T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Internship",
+        "Frontend Intern",
+        "India",
+        "HTML",
+        "CSS"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-040",
+    "title": "AI Research Intern",
+    "company": {
+      "name": "CloudMint Software",
+      "website": "https://example.com/cloudmint",
+      "industry": "Internship",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Internship",
+    "employment_type": "Fixed-term",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 0,
+      "max_years": 0,
+      "level": "Internship"
+    },
+    "location": {
+      "city": "Nagpur",
+      "state": "Maharashtra",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Nagpur",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 15000,
+      "max_salary": 30000,
+      "currency": "INR",
+      "salary_period": "month",
+      "ctc": false,
+      "benefits": [
+        "Wellness allowance",
+        "Performance bonus",
+        "Internet allowance",
+        "Health insurance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "Linear Algebra",
+        "Probability",
+        "Machine Learning",
+        "NumPy"
+      ],
+      "preferred": [
+        "PyTorch",
+        "Transformers",
+        "Pandas",
+        "Jupyter",
+        "Research Writing"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "Linear Algebra",
+          "Probability",
+          "Machine Learning"
+        ],
+        "additional": [
+          "NumPy",
+          "PyTorch",
+          "Transformers",
+          "Pandas",
+          "Jupyter",
+          "Research Writing"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Currently pursuing a bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Assist with experiments, literature reviews, dataset preparation, and evaluation of machine learning approaches under researcher guidance.",
+    "responsibilities": [
+      "Review relevant papers.",
+      "Prepare datasets.",
+      "Run reproducible experiments.",
+      "Compare evaluation metrics.",
+      "Summarize findings."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply Linear Algebra in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-040",
+      "application_method": "Online",
+      "posted_at": "2026-09-28T09:00:00Z",
+      "application_deadline": "2026-11-04T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Internship",
+        "AI Research Intern",
+        "India",
+        "Python",
+        "Linear Algebra"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-041",
+    "title": "Full Stack Developer",
+    "company": {
+      "name": "CloudHarbor Labs",
+      "website": "https://example.com/cloudharbor",
+      "industry": "Software Development",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 0,
+      "max_years": 1,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Bengaluru"
+      ]
+    },
+    "compensation": {
+      "min_salary": 850000,
+      "max_salary": 1050000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Health insurance",
+        "Performance bonus",
+        "Mentorship",
+        "Learning budget"
+      ]
+    },
+    "skills": {
+      "required": [
+        "JavaScript",
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "REST APIs",
+        "Git"
+      ],
+      "preferred": [
+        "TypeScript",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "Next.js"
+      ],
+      "categories": {
+        "primary": [
+          "JavaScript",
+          "React.js",
+          "Node.js",
+          "Express.js"
+        ],
+        "additional": [
+          "MongoDB",
+          "REST APIs",
+          "Git",
+          "TypeScript",
+          "PostgreSQL",
+          "Docker",
+          "AWS",
+          "Next.js"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": true
+    },
+    "description": "Build and maintain responsive web applications across frontend and backend layers. Develop REST APIs, integrate databases, write tests, and collaborate with product and design teams.",
+    "responsibilities": [
+      "Build responsive React interfaces.",
+      "Develop backend services with Node.js and Express.js.",
+      "Design and query databases.",
+      "Integrate and document REST APIs.",
+      "Review code and fix bugs."
+    ],
+    "qualifications": [
+      "Working knowledge of JavaScript and related development practices.",
+      "Ability to apply React.js in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-041",
+      "application_method": "Online",
+      "posted_at": "2026-10-17T09:00:00Z",
+      "application_deadline": "2026-11-24T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Full Stack Developer",
+        "Entry-level",
+        "India",
+        "JavaScript",
+        "React.js"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-042",
+    "title": "Frontend Developer",
+    "company": {
+      "name": "CedarWave Technologies",
+      "website": "https://example.com/cedarwave",
+      "industry": "Software Development",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Delhi",
+      "state": "Delhi",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Delhi"
+      ]
+    },
+    "compensation": {
+      "min_salary": 400000,
+      "max_salary": 700000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Performance bonus",
+        "Paid leave",
+        "Flexible working hours",
+        "Internet allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "JavaScript",
+        "React.js",
+        "HTML",
+        "CSS",
+        "REST APIs",
+        "Git"
+      ],
+      "preferred": [
+        "TypeScript",
+        "Next.js",
+        "Jest",
+        "Accessibility",
+        "Vite"
+      ],
+      "categories": {
+        "primary": [
+          "JavaScript",
+          "React.js",
+          "HTML",
+          "CSS"
+        ],
+        "additional": [
+          "REST APIs",
+          "Git",
+          "TypeScript",
+          "Next.js",
+          "Jest",
+          "Accessibility",
+          "Vite"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Create accessible, responsive user interfaces and reusable components. Work with designers and backend engineers to deliver reliable web experiences.",
+    "responsibilities": [
+      "Implement UI components.",
+      "Ensure responsive layouts and accessibility.",
+      "Integrate frontend applications with APIs.",
+      "Optimize performance.",
+      "Write component tests."
+    ],
+    "qualifications": [
+      "Working knowledge of JavaScript and related development practices.",
+      "Ability to apply React.js in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-042",
+      "application_method": "Online",
+      "posted_at": "2026-10-16T09:00:00Z",
+      "application_deadline": "2026-11-24T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Frontend Developer",
+        "Entry-level",
+        "India",
+        "JavaScript",
+        "React.js"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-043",
+    "title": "Backend Developer",
+    "company": {
+      "name": "Ironwood Apps",
+      "website": "https://example.com/ironwood",
+      "industry": "Software Development",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 1,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Kolkata"
+      ]
+    },
+    "compensation": {
+      "min_salary": 900000,
+      "max_salary": 1400000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Learning budget",
+        "Internet allowance",
+        "Performance bonus",
+        "Paid leave"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Node.js",
+        "Express.js",
+        "SQL",
+        "REST APIs",
+        "Git",
+        "Authentication"
+      ],
+      "preferred": [
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "AWS",
+        "Message Queues"
+      ],
+      "categories": {
+        "primary": [
+          "Node.js",
+          "Express.js",
+          "SQL",
+          "REST APIs"
+        ],
+        "additional": [
+          "Git",
+          "Authentication",
+          "PostgreSQL",
+          "Redis",
+          "Docker",
+          "AWS",
+          "Message Queues"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Design secure and scalable backend services, data models, and APIs. Improve reliability, performance, and observability across services.",
+    "responsibilities": [
+      "Build and maintain APIs.",
+      "Design database schemas and queries.",
+      "Implement authentication and authorization.",
+      "Write tests and documentation.",
+      "Monitor and troubleshoot services."
+    ],
+    "qualifications": [
+      "Working knowledge of Node.js and related development practices.",
+      "Ability to apply Express.js in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-043",
+      "application_method": "Online",
+      "posted_at": "2026-10-15T09:00:00Z",
+      "application_deadline": "2026-11-24T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Backend Developer",
+        "Mid-level",
+        "India",
+        "Node.js",
+        "Express.js"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-044",
+    "title": "Python Developer",
+    "company": {
+      "name": "Nexora Digital",
+      "website": "https://example.com/nexora",
+      "industry": "Software Development",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 2,
+      "max_years": 5,
+      "level": "Experienced"
+    },
+    "location": {
+      "city": "Indore",
+      "state": "Madhya Pradesh",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Indore"
+      ]
+    },
+    "compensation": {
+      "min_salary": 800000,
+      "max_salary": 1300000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Paid leave",
+        "Health insurance",
+        "Mentorship",
+        "Flexible working hours"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "SQL",
+        "REST APIs",
+        "Git",
+        "Unit Testing"
+      ],
+      "preferred": [
+        "FastAPI",
+        "Django",
+        "PostgreSQL",
+        "Docker",
+        "Linux"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "SQL",
+          "REST APIs",
+          "Git"
+        ],
+        "additional": [
+          "Unit Testing",
+          "FastAPI",
+          "Django",
+          "PostgreSQL",
+          "Docker",
+          "Linux"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Develop Python services and automation tools, connect applications to databases, and maintain dependable, tested code.",
+    "responsibilities": [
+      "Develop Python modules and services.",
+      "Build or integrate APIs.",
+      "Write automated tests.",
+      "Optimize database operations.",
+      "Document implementation details."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply SQL in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-044",
+      "application_method": "Online",
+      "posted_at": "2026-10-14T09:00:00Z",
+      "application_deadline": "2026-11-24T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Software Development",
+        "Python Developer",
+        "Experienced",
+        "India",
+        "Python",
+        "SQL"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-045",
+    "title": "Data Analyst",
+    "company": {
+      "name": "NovaTrail Systems",
+      "website": "https://example.com/novatrail",
+      "industry": "Data and Analytics",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 3,
+      "max_years": 4,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Remote",
+      "state": "Remote",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 700000,
+      "max_salary": 900000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Performance bonus",
+        "Paid leave",
+        "Internet allowance",
+        "Mentorship"
+      ]
+    },
+    "skills": {
+      "required": [
+        "SQL",
+        "Excel",
+        "Python",
+        "Data Visualization",
+        "Statistics"
+      ],
+      "preferred": [
+        "Power BI",
+        "Tableau",
+        "Pandas",
+        "PostgreSQL",
+        "A/B Testing"
+      ],
+      "categories": {
+        "primary": [
+          "SQL",
+          "Excel",
+          "Python",
+          "Data Visualization"
+        ],
+        "additional": [
+          "Statistics",
+          "Power BI",
+          "Tableau",
+          "Pandas",
+          "PostgreSQL",
+          "A/B Testing"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": true
+    },
+    "description": "Analyze business datasets, build dashboards, and translate findings into practical recommendations for stakeholders.",
+    "responsibilities": [
+      "Clean and validate datasets.",
+      "Write SQL queries.",
+      "Build dashboards and reports.",
+      "Identify trends and anomalies.",
+      "Present insights to stakeholders."
+    ],
+    "qualifications": [
+      "Working knowledge of SQL and related development practices.",
+      "Ability to apply Excel in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-045",
+      "application_method": "Online",
+      "posted_at": "2026-10-13T09:00:00Z",
+      "application_deadline": "2026-11-24T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Data and Analytics",
+        "Data Analyst",
+        "Mid-level",
+        "India",
+        "SQL",
+        "Excel"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-046",
+    "title": "Machine Learning Engineer",
+    "company": {
+      "name": "LumenPath Tech",
+      "website": "https://example.com/lumenpath",
+      "industry": "AI and Machine Learning",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "On-site",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Bengaluru"
+      ]
+    },
+    "compensation": {
+      "min_salary": 700000,
+      "max_salary": 1000000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Wellness allowance",
+        "Health insurance",
+        "Paid leave",
+        "Performance bonus"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Scikit-learn",
+        "Statistics",
+        "Git"
+      ],
+      "preferred": [
+        "PyTorch",
+        "TensorFlow",
+        "MLflow",
+        "Docker",
+        "FastAPI"
+      ],
+      "categories": {
+        "primary": [
+          "Python",
+          "Pandas",
+          "NumPy",
+          "Scikit-learn"
+        ],
+        "additional": [
+          "Statistics",
+          "Git",
+          "PyTorch",
+          "TensorFlow",
+          "MLflow",
+          "Docker",
+          "FastAPI"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": false
+    },
+    "description": "Develop, evaluate, and deploy machine learning models. Prepare training data, track experiments, and collaborate on production ML systems.",
+    "responsibilities": [
+      "Prepare and validate datasets.",
+      "Train and evaluate models.",
+      "Track experiments and metrics.",
+      "Build inference pipelines.",
+      "Document model limitations."
+    ],
+    "qualifications": [
+      "Working knowledge of Python and related development practices.",
+      "Ability to apply Pandas in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-046",
+      "application_method": "Online",
+      "posted_at": "2026-10-12T09:00:00Z",
+      "application_deadline": "2026-11-24T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "AI and Machine Learning",
+        "Machine Learning Engineer",
+        "Entry-level",
+        "India",
+        "Python",
+        "Pandas"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-047",
+    "title": "DevOps Engineer",
+    "company": {
+      "name": "PixelRoute Software",
+      "website": "https://example.com/pixelroute",
+      "industry": "Cloud and DevOps",
+      "company_size": "201-500 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 0,
+      "max_years": 2,
+      "level": "Entry-level"
+    },
+    "location": {
+      "city": "Delhi",
+      "state": "Delhi",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Delhi",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 350000,
+      "max_salary": 850000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Flexible working hours",
+        "Wellness allowance",
+        "Performance bonus",
+        "Learning budget"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Linux",
+        "Docker",
+        "CI/CD",
+        "Git",
+        "Networking"
+      ],
+      "preferred": [
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+        "Prometheus",
+        "Python"
+      ],
+      "categories": {
+        "primary": [
+          "Linux",
+          "Docker",
+          "CI/CD",
+          "Git"
+        ],
+        "additional": [
+          "Networking",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "Prometheus",
+          "Python"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Automate build, test, and deployment workflows while improving infrastructure reliability, monitoring, and operational practices.",
+    "responsibilities": [
+      "Maintain CI/CD pipelines.",
+      "Containerize applications.",
+      "Automate infrastructure tasks.",
+      "Monitor system health.",
+      "Troubleshoot deployment issues."
+    ],
+    "qualifications": [
+      "Working knowledge of Linux and related development practices.",
+      "Ability to apply Docker in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-047",
+      "application_method": "Online",
+      "posted_at": "2026-10-11T09:00:00Z",
+      "application_deadline": "2026-11-24T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Take-home assignment",
+        "Technical discussion",
+        "Culture and values interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Cloud and DevOps",
+        "DevOps Engineer",
+        "Entry-level",
+        "India",
+        "Linux",
+        "Docker"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-048",
+    "title": "Cloud Engineer",
+    "company": {
+      "name": "VertexSpring Labs",
+      "website": "https://example.com/vertexspring",
+      "industry": "Cloud and DevOps",
+      "company_size": "501-1000 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 1,
+      "max_years": 4,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Kolkata"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1300000,
+      "max_salary": 1800000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Learning budget",
+        "Paid leave",
+        "Internet allowance",
+        "Wellness allowance"
+      ]
+    },
+    "skills": {
+      "required": [
+        "AWS",
+        "Linux",
+        "Networking",
+        "IAM",
+        "Git"
+      ],
+      "preferred": [
+        "Terraform",
+        "Docker",
+        "Kubernetes",
+        "Python",
+        "CloudWatch"
+      ],
+      "categories": {
+        "primary": [
+          "AWS",
+          "Linux",
+          "Networking",
+          "IAM"
+        ],
+        "additional": [
+          "Git",
+          "Terraform",
+          "Docker",
+          "Kubernetes",
+          "Python",
+          "CloudWatch"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 7.0,
+      "backlogs_allowed": false
+    },
+    "description": "Help design, deploy, and operate secure cloud infrastructure with appropriate monitoring, access controls, and cost awareness.",
+    "responsibilities": [
+      "Provision cloud resources.",
+      "Configure access policies.",
+      "Monitor performance and costs.",
+      "Automate repeatable tasks.",
+      "Document infrastructure."
+    ],
+    "qualifications": [
+      "Working knowledge of AWS and related development practices.",
+      "Ability to apply Linux in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-048",
+      "application_method": "Online",
+      "posted_at": "2026-10-10T09:00:00Z",
+      "application_deadline": "2026-11-24T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online assessment",
+        "Pair programming",
+        "System design discussion",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Cloud and DevOps",
+        "Cloud Engineer",
+        "Mid-level",
+        "India",
+        "AWS",
+        "Linux"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-049",
+    "title": "QA Automation Engineer",
+    "company": {
+      "name": "Northstar Codeworks",
+      "website": "https://example.com/northstar",
+      "industry": "Quality Assurance",
+      "company_size": "11-50 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Hybrid",
+    "experience": {
+      "min_years": 2,
+      "max_years": 3,
+      "level": "Mid-level"
+    },
+    "location": {
+      "city": "Indore",
+      "state": "Madhya Pradesh",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": false,
+      "work_locations": [
+        "Indore",
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 700000,
+      "max_salary": 900000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Mentorship",
+        "Health insurance",
+        "Wellness allowance",
+        "Flexible working hours"
+      ]
+    },
+    "skills": {
+      "required": [
+        "Test Automation",
+        "JavaScript",
+        "API Testing",
+        "Git",
+        "SQL"
+      ],
+      "preferred": [
+        "Playwright",
+        "Cypress",
+        "Selenium",
+        "Jest",
+        "CI/CD"
+      ],
+      "categories": {
+        "primary": [
+          "Test Automation",
+          "JavaScript",
+          "API Testing",
+          "Git"
+        ],
+        "additional": [
+          "SQL",
+          "Playwright",
+          "Cypress",
+          "Selenium",
+          "Jest",
+          "CI/CD"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.0,
+      "backlogs_allowed": true
+    },
+    "description": "Create automated test suites for web applications and APIs, investigate defects, and help teams improve release quality.",
+    "responsibilities": [
+      "Write and maintain automated tests.",
+      "Test APIs and database behavior.",
+      "Report reproducible defects.",
+      "Integrate tests into CI pipelines.",
+      "Collaborate on test strategy."
+    ],
+    "qualifications": [
+      "Working knowledge of Test Automation and related development practices.",
+      "Ability to apply JavaScript in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-049",
+      "application_method": "Online",
+      "posted_at": "2026-10-09T09:00:00Z",
+      "application_deadline": "2026-11-08T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Online aptitude test",
+        "Technical assessment",
+        "Technical interview",
+        "HR interview"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": false
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Quality Assurance",
+        "QA Automation Engineer",
+        "Mid-level",
+        "India",
+        "Test Automation",
+        "JavaScript"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  },
+  {
+    "job_id": "JOB-2026-050",
+    "title": "Mobile App Developer",
+    "company": {
+      "name": "QuantLeaf Analytics",
+      "website": "https://example.com/quantleaf",
+      "industry": "Mobile Development",
+      "company_size": "51-200 employees"
+    },
+    "job_type": "Full-time",
+    "employment_type": "Permanent",
+    "work_mode": "Remote",
+    "experience": {
+      "min_years": 3,
+      "max_years": 5,
+      "level": "Experienced"
+    },
+    "location": {
+      "city": "Remote",
+      "state": "Remote",
+      "country": "India",
+      "country_code": "IN",
+      "is_remote": true,
+      "work_locations": [
+        "Remote"
+      ]
+    },
+    "compensation": {
+      "min_salary": 1400000,
+      "max_salary": 1700000,
+      "currency": "INR",
+      "salary_period": "year",
+      "ctc": true,
+      "benefits": [
+        "Health insurance",
+        "Flexible working hours",
+        "Internet allowance",
+        "Paid leave"
+      ]
+    },
+    "skills": {
+      "required": [
+        "JavaScript",
+        "React Native",
+        "REST APIs",
+        "Git",
+        "Mobile UI"
+      ],
+      "preferred": [
+        "TypeScript",
+        "Expo",
+        "Firebase",
+        "Jest",
+        "Android"
+      ],
+      "categories": {
+        "primary": [
+          "JavaScript",
+          "React Native",
+          "REST APIs",
+          "Git"
+        ],
+        "additional": [
+          "Mobile UI",
+          "TypeScript",
+          "Expo",
+          "Firebase",
+          "Jest",
+          "Android"
+        ]
+      }
+    },
+    "education": {
+      "minimum_qualification": "Bachelor's degree",
+      "eligible_degrees": [
+        "B.Tech",
+        "B.E.",
+        "BCA",
+        "MCA",
+        "B.Sc. Computer Science"
+      ],
+      "eligible_branches": [
+        "Computer Science",
+        "Information Technology",
+        "Software Engineering"
+      ],
+      "minimum_cgpa": 6.5,
+      "backlogs_allowed": false
+    },
+    "description": "Build and maintain mobile applications with smooth user experiences, API integrations, and reliable app lifecycle behavior.",
+    "responsibilities": [
+      "Develop reusable mobile screens.",
+      "Integrate backend APIs.",
+      "Debug device-specific issues.",
+      "Improve startup and runtime performance.",
+      "Test on multiple screen sizes."
+    ],
+    "qualifications": [
+      "Working knowledge of JavaScript and related development practices.",
+      "Ability to apply React Native in practical projects.",
+      "Comfortable collaborating with a team and communicating progress.",
+      "Able to debug issues and document solutions."
+    ],
+    "application": {
+      "application_url": "https://example.com/jobs/job-2026-050",
+      "application_method": "Online",
+      "posted_at": "2026-10-08T09:00:00Z",
+      "application_deadline": "2026-11-08T09:00:00Z",
+      "status": "open"
+    },
+    "recruitment": {
+      "rounds": [
+        "Resume screening",
+        "Coding challenge",
+        "Technical interview",
+        "Hiring manager discussion"
+      ],
+      "resume_required": true,
+      "portfolio_preferred": true
+    },
+    "metadata": {
+      "source": "dummy_dataset",
+      "is_verified": false,
+      "is_active": true,
+      "tags": [
+        "Mobile Development",
+        "Mobile App Developer",
+        "Experienced",
+        "India",
+        "JavaScript",
+        "React Native"
+      ],
+      "created_at": "2026-10-17T00:00:00Z",
+      "updated_at": "2026-10-17T00:00:00Z"
+    }
+  }
+]

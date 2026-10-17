@@ -3,7 +3,7 @@ const knownSkills = [
   'Project Management', 'Data Analysis', 'Data Structures', 'Software Development', 'Cloud Computing',
   'Spring Boot', 'React Native', 'Automation Testing', 'Power BI', 'Microsoft Excel', 'Google Analytics',
   'Scikit-learn', 'TensorFlow', 'Tailwind CSS', 'Next.js', 'Express.js', 'Node.js', 'Vue.js', 'Angular',
-  'TypeScript', 'JavaScript', 'PostgreSQL', 'MySQL', 'MongoDB', 'GraphQL', 'REST API', 'C++', 'C#', '.NET',
+  'TypeScript', 'JavaScript', 'PostgreSQL', 'MySQL', 'MongoDB', 'GraphQL', 'REST APIs', 'REST API', 'C++', 'C#', '.NET',
   'HTML', 'CSS', 'React', 'Python', 'Java', 'Django', 'Flask', 'FastAPI', 'PHP', 'Laravel', 'SQL', 'AWS',
   'Azure', 'GCP', 'Docker', 'Kubernetes', 'DevOps', 'CI/CD', 'Git', 'Linux', 'Redis', 'Figma', 'Tableau',
   'NumPy', 'Pandas', 'PyTorch', 'Selenium', 'Playwright', 'Flutter', 'Android', 'iOS', 'Swift', 'Kotlin',

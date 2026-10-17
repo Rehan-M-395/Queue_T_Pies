@@ -126,6 +126,9 @@ function resumeDto(row) {
     contentType: row.content_type,
     sizeBytes: Number(row.size_bytes),
     createdAt: row.created_at,
+    skills: Array.isArray(row.extracted_skills) ? row.extracted_skills : [],
+    skillsStatus: row.skills_analysis_status || 'not_analyzed',
+    skillsAnalyzedAt: row.skills_analyzed_at || null,
   }
 }
 
@@ -226,6 +229,80 @@ function githubConfigured(res) {
     return false
   }
   return true
+}
+
+function classifyGitHubQuestion(message) {
+  const text = message.toLowerCase()
+  const mentionsRepositories = /\b(github|repo|repos|repository|repositories|reposit\w*|codebase|source code)\b/.test(text)
+  // Users often refer to a repository by its name alone (for example,
+  // "review yt-visual-text") without saying "repo" or "GitHub".
+  const asksToInspectProject = /\b(review|analy[sz]e|evaluate|inspect|look at|check|read|overview|explain|summari[sz]e|describe|understand)\b/.test(text)
+  const containsRepositorySlug = /\b[a-z0-9][a-z0-9_.-]*[-_.][a-z0-9_.-]*\b/i.test(message)
+  if (!mentionsRepositories && !(asksToInspectProject && containsRepositorySlug)) return 'none'
+  if (/\b(all|every|list|show|see|display|what are)\b/.test(text) && /\b(github|repo|repos|repository|repositories|reposit\w*)\b/.test(text)) return 'list'
+  return 'code'
+}
+
+async function fetchAccessibleGitHubRepositories(accessToken) {
+  let pageUrl = 'https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member'
+  const repos = []
+  let pageCount = 0
+  let tokenScopes = null
+  while (pageUrl && pageCount < 100) {
+    if (new URL(pageUrl).origin !== 'https://api.github.com') throw new Error('GitHub returned an invalid pagination URL.')
+    const response = await fetch(pageUrl, {
+      headers: { Authorization: `Bearer ${accessToken}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+      signal: AbortSignal.timeout(15000),
+    })
+    if (!response.ok) {
+      const error = new Error('GitHub could not list repositories. Reconnect GitHub or check app repository permissions.')
+      error.status = response.status
+      throw error
+    }
+    if (pageCount === 0) tokenScopes = response.headers.get('x-oauth-scopes')
+    const data = await response.json()
+    if (!Array.isArray(data)) throw new Error('GitHub returned an unexpected repository response.')
+    repos.push(...data)
+    const next = response.headers.get('link')?.split(',').find((item) => item.includes('rel="next"'))
+    pageUrl = next?.match(/<([^>]+)>/)?.[1] || ''
+    pageCount += 1
+  }
+  if (pageUrl) throw new Error('GitHub returned more repository pages than the supported safety limit.')
+  return { repositories: repos, tokenScopes }
+}
+
+async function verifyGitHubIdentity(accessToken, expectedLogin) {
+  const response = await fetch('https://api.github.com/user', {
+    headers: { Authorization: `Bearer ${accessToken}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+    signal: AbortSignal.timeout(12000),
+  })
+  const profile = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    const error = new Error(response.status === 401
+      ? 'Your GitHub session was rejected. Reconnect GitHub.'
+      : 'GitHub could not verify repository access. Check GitHub app permissions and try again.')
+    error.status = response.status
+    throw error
+  }
+  if (!profile.login || profile.login.toLowerCase() !== String(expectedLogin || '').toLowerCase()) {
+    const error = new Error('The GitHub token does not match the connected account. Disconnect and reconnect GitHub.')
+    error.status = 401
+    throw error
+  }
+  const scopeHeader = response.headers.get('x-oauth-scopes')
+  const scopes = scopeHeader === null ? null : scopeHeader.split(',').map((scope) => scope.trim()).filter(Boolean)
+  console.info(`GitHub token verified; account_match=true; oauth_scope_header=${scopes === null ? 'not-provided' : scopes.length ? scopes.join(',') : 'empty'}`)
+  return { scopes }
+}
+
+async function saveGitHubRepositories(userId, repos) {
+  for (const repo of repos) {
+    await pool.query(`INSERT INTO public.github_repositories (user_id, repository_id, full_name, private, html_url, description, language, default_branch, pushed_at)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) ON CONFLICT (user_id, repository_id) DO UPDATE SET
+      full_name=EXCLUDED.full_name, private=EXCLUDED.private, html_url=EXCLUDED.html_url, description=EXCLUDED.description,
+      language=EXCLUDED.language, default_branch=EXCLUDED.default_branch, pushed_at=EXCLUDED.pushed_at, synced_at=NOW()`,
+    [userId, String(repo.id), repo.full_name, repo.private, repo.html_url, repo.description, repo.language, repo.default_branch, repo.pushed_at])
+  }
 }
 
 app.post('/api/github/oauth/start', requireTrustedOrigin, requireSession, async (req, res, next) => {
@@ -331,15 +408,28 @@ app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, as
   try {
     const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8001')).replace(/\/$/, '')
     if (!agentUrl) return res.status(503).json({ error: 'AI Analysis service is not configured on the backend.' })
-
-    const selectedResult = await pool.query(
-      'SELECT full_name FROM public.github_repositories WHERE user_id=$1 AND selected=true ORDER BY full_name LIMIT 100',
-      [req.user.id],
-    )
-    let selectedRepositories = selectedResult.rows.map((row) => row.full_name)
+    const githubMode = classifyGitHubQuestion(message)
+    let selectedRepositories = []
+    let accessibleRepositories = []
     let githubConnection = null
-    if (selectedRepositories.length) githubConnection = await getGitHubAccessToken(req.user.id)
-    if (!githubConnection) selectedRepositories = []
+    if (githubMode !== 'none') {
+      githubConnection = await getGitHubAccessToken(req.user.id)
+      if (!githubConnection) return res.status(409).json({ error: 'Connect GitHub in GitHub Analysis before asking repository questions.' })
+      await verifyGitHubIdentity(githubConnection.token, githubConnection.login)
+      if (githubMode === 'list') {
+        const { repositories, tokenScopes } = await fetchAccessibleGitHubRepositories(githubConnection.token)
+        await saveGitHubRepositories(req.user.id, repositories)
+        accessibleRepositories = repositories.map((repo) => repo.full_name).filter(Boolean)
+        console.info(`GitHub repository inventory synced; count=${accessibleRepositories.length}; oauth_scope_header=${tokenScopes === null ? 'not-provided' : tokenScopes || 'empty'}`)
+      } else {
+        const selectedResult = await pool.query(
+          'SELECT full_name FROM public.github_repositories WHERE user_id=$1 AND selected=true ORDER BY full_name LIMIT 100',
+          [req.user.id],
+        )
+        selectedRepositories = selectedResult.rows.map((row) => row.full_name)
+        if (!selectedRepositories.length) return res.status(409).json({ error: 'Select and save at least one repository in GitHub Analysis before asking about code.' })
+      }
+    }
 
     const response = await fetch(`${agentUrl}/chat`, {
       method: 'POST',
@@ -348,7 +438,10 @@ app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, as
         user_id: req.user.id,
         message,
         history: Array.isArray(history) ? history : [],
+        github_mode: githubMode,
         selected_repositories: selectedRepositories,
+        accessible_repositories: accessibleRepositories,
+        github_login: githubConnection?.login || null,
         github_access_token: githubConnection?.token || null,
       }),
       signal: AbortSignal.timeout(95000),
@@ -356,14 +449,19 @@ app.post('/api/ai/chat', requireTrustedOrigin, requireSession, aiChatLimiter, as
     const payload = await response.json().catch(() => ({}))
     if (!response.ok) {
       const status = [401, 403, 429, 503, 504].includes(response.status) ? response.status : 502
-      const message = typeof payload.detail === 'string' ? payload.detail : 'AI Analysis could not complete the request. Please retry.'
-      return res.status(status).json({ error: message })
+      console.error(`AI agent returned HTTP ${response.status}; request_id=${payload.request_id || response.headers.get('x-request-id') || 'unavailable'}; github_mode=${githubMode}`)
+      const errorMessage = typeof payload.detail === 'string' ? payload.detail : 'AI Analysis could not complete the request. Please retry.'
+      return res.status(status).json({ error: errorMessage, requestId: payload.request_id || response.headers.get('x-request-id') || null })
     }
     if (typeof payload.answer !== 'string' || !payload.answer.trim()) return res.status(502).json({ error: 'The AI returned an empty response. Please retry.' })
-    return res.json({ answer: payload.answer, githubAvailable: Boolean(githubConnection && selectedRepositories.length), selectedRepositories })
+    return res.json({ answer: payload.answer, githubAvailable: Boolean(githubConnection), githubMode, selectedRepositoryCount: selectedRepositories.length, accessibleRepositoryCount: accessibleRepositories.length, requestId: payload.requestId || null, mcp: payload.mcp || null })
   } catch (error) {
     if (error.message.includes('GitHub session') || error.message.includes('decrypted')) {
       return res.status(401).json({ error: error.message })
+    }
+    if (error.status) {
+      console.error(`GitHub repository request returned HTTP ${error.status}`)
+      return res.status(error.status === 401 || error.status === 403 ? error.status : 502).json({ error: error.message })
     }
     if (error.name === 'TimeoutError' || error.name === 'AbortError') {
       return res.status(504).json({ error: 'AI Analysis took too long. Please retry.' })
@@ -389,28 +487,14 @@ app.get('/api/github/repositories', requireSession, async (req, res) => {
   try {
     const connection = await getGitHubAccessToken(req.user.id)
     if (!connection) return res.status(409).json({ error: 'Connect GitHub to see your repositories.' })
-    let pageUrl = 'https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member'
-    const repos = []
-    for (let page = 0; page < 10 && pageUrl; page += 1) {
-      const response = await fetch(pageUrl, { headers: { Authorization: `Bearer ${connection.token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }, signal: AbortSignal.timeout(15000) })
-      if (!response.ok) return res.status(response.status === 401 || response.status === 403 ? 502 : response.status).json({ error: 'GitHub could not list repositories. Reconnect or check the GitHub App permissions.' })
-      const data = await response.json()
-      if (!Array.isArray(data)) return res.status(502).json({ error: 'GitHub returned an unexpected repository response.' })
-      repos.push(...data)
-      const next = response.headers.get('link')?.split(',').find((item) => item.includes('rel="next"'))
-      pageUrl = next?.match(/<([^>]+)>/)?.[1] || ''
-    }
-    for (const repo of repos) {
-      await pool.query(`INSERT INTO public.github_repositories (user_id, repository_id, full_name, private, html_url, description, language, default_branch, pushed_at)
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) ON CONFLICT (user_id, repository_id) DO UPDATE SET
-        full_name=EXCLUDED.full_name, private=EXCLUDED.private, html_url=EXCLUDED.html_url, description=EXCLUDED.description,
-        language=EXCLUDED.language, default_branch=EXCLUDED.default_branch, pushed_at=EXCLUDED.pushed_at, synced_at=NOW()`,
-      [req.user.id, String(repo.id), repo.full_name, repo.private, repo.html_url, repo.description, repo.language, repo.default_branch, repo.pushed_at])
-    }
+    const { repositories: repos, tokenScopes } = await fetchAccessibleGitHubRepositories(connection.token)
+    console.info(`GitHub repository inventory synced; count=${repos.length}; oauth_scope_header=${tokenScopes === null ? 'not-provided' : tokenScopes || 'empty'}`)
+    await saveGitHubRepositories(req.user.id, repos)
     const saved = await pool.query(`SELECT repository_id::text AS id, full_name, private, html_url, description, language, default_branch, pushed_at, selected
       FROM public.github_repositories WHERE user_id=$1 ORDER BY full_name`, [req.user.id])
     return res.json({ githubLogin: connection.login, repositories: saved.rows })
   } catch (error) {
+    if (error.status) return res.status(error.status === 401 || error.status === 403 ? 502 : error.status).json({ error: error.message })
     return res.status(error.message.includes('GitHub session') || error.message.includes('decrypted') ? 401 : 500).json({ error: error.message.includes('GitHub session') || error.message.includes('decrypted') ? error.message : 'Could not load GitHub repositories. Please retry.' })
   }
 })
@@ -674,10 +758,79 @@ app.post('/api/resumes', requireTrustedOrigin, requireSession, requireResumeStor
   }
 })
 
+app.post('/api/resumes/:id/analyze', requireTrustedOrigin, requireSession, requireResumeStorage, async (req, res, next) => {
+  const resumeId = req.params.id
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(resumeId)) {
+    return res.status(400).json({ error: 'Invalid resume id.' })
+  }
+  try {
+    const result = await pool.query(
+      `SELECT id, original_filename, storage_path, content_type
+       FROM public.resumes WHERE id=$1 AND user_id=$2 LIMIT 1`,
+      [resumeId, req.user.id],
+    )
+    const resume = result.rows[0]
+    if (!resume) return res.status(404).json({ error: 'Resume not found.' })
+
+    const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8001')).replace(/\/$/, '')
+    if (!agentUrl) return res.status(503).json({ error: 'Resume analysis service is not configured on the backend.' })
+    const { data, error: downloadError } = await supabase.storage.from(resumeBucket).download(resume.storage_path)
+    if (downloadError || !data) return res.status(502).json({ error: 'Could not read the stored resume for analysis.' })
+
+    await pool.query(
+      `UPDATE public.resumes SET skills_analysis_status='analyzing' WHERE id=$1 AND user_id=$2`,
+      [resumeId, req.user.id],
+    )
+    let response
+    try {
+      const fileBytes = Buffer.from(await data.arrayBuffer())
+      response = await fetch(`${agentUrl}/analyze-resume`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${getToken(req)}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: req.user.id,
+          original_filename: resume.original_filename,
+          content_type: resume.content_type,
+          file_base64: fileBytes.toString('base64'),
+        }),
+        signal: AbortSignal.timeout(95000),
+      })
+    } catch (error) {
+      await pool.query(`UPDATE public.resumes SET skills_analysis_status='failed' WHERE id=$1 AND user_id=$2`, [resumeId, req.user.id])
+      if (error.name === 'TimeoutError' || error.name === 'AbortError') return res.status(504).json({ error: 'Resume analysis took too long. Please retry.' })
+      return res.status(502).json({ error: 'Could not reach the resume analysis service. Please retry.' })
+    }
+    const payload = await response.json().catch(() => ({}))
+    if (!response.ok || !Array.isArray(payload.skills)) {
+      await pool.query(`UPDATE public.resumes SET skills_analysis_status='failed' WHERE id=$1 AND user_id=$2`, [resumeId, req.user.id])
+      console.error(`Resume analysis failed; resume_id=${resumeId}; status=${response.status}; request_id=${payload.request_id || 'unavailable'}`)
+      const status = [401, 403, 429, 503, 504].includes(response.status) ? response.status : 502
+      return res.status(status).json({ error: typeof payload.detail === 'string' ? payload.detail : 'Could not analyze this resume. Please retry.' })
+    }
+
+    const saved = await pool.query(
+      `UPDATE public.resumes
+       SET extracted_skills=$1::jsonb, skills_analysis_status='complete', skills_analyzed_at=NOW()
+       WHERE id=$2 AND user_id=$3
+       RETURNING extracted_skills, skills_analysis_status, skills_analyzed_at`,
+      [JSON.stringify(payload.skills), resumeId, req.user.id],
+    )
+    const row = saved.rows[0]
+    return res.json({
+      skills: row.extracted_skills,
+      skillsStatus: row.skills_analysis_status,
+      skillsAnalyzedAt: row.skills_analyzed_at,
+    })
+  } catch (error) {
+    return next(error)
+  }
+})
+
 app.get('/api/resumes', requireSession, requireResumeStorage, async (req, res, next) => {
   try {
     const result = await pool.query(
-      `SELECT id, original_filename, content_type, size_bytes, created_at
+      `SELECT id, original_filename, content_type, size_bytes, created_at,
+              extracted_skills, skills_analysis_status, skills_analyzed_at
        FROM public.resumes WHERE user_id = $1 ORDER BY created_at DESC`,
       [req.user.id],
     )

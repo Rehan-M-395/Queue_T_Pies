@@ -6,7 +6,7 @@
 2. Set `JWT_SECRET` to a long random value of at least 32 characters.
 3. Add your Supabase project URL as `SUPABASE_URL` and its **server-side secret key** as `SUPABASE_SECRET_KEY`. `SUPABASE_PUBLISHABLE_KEY` and `SUPABASE_JWKS_URL` can also be recorded there, but resume storage uses only the secret key. Never add the secret key to a frontend environment variable or commit it.
 4. Confirm `USERS_TABLE` matches your table. It defaults to `public.users`.
-5. Run `npm run db:migrate` once from this folder to create the resume metadata table.
+5. Run `npm run db:migrate` from this folder to apply the resume metadata and skill extraction migrations.
 6. Run `npm run dev` from this folder. When the Supabase values are set, the API creates or ensures a private `resumes` bucket at startup. The API listens on port 4000 by default.
 7. In another terminal, run `npm run dev` from `frontend/vite-project`.
 
@@ -25,4 +25,6 @@ Job listings are fetched from IndianAPI using the server-only `INDIANAPI_API_KEY
 
 The sample row has a plaintext value in `password_hash`. On its first successful sign-in, the API upgrades that value to a bcrypt hash. Replace the sample password with a strong one after setup.
 
-Resume files are limited to 10 MB and PDF/DOCX, verified by extension, MIME type, and file signature. The API stores objects under a per-user path, keeps metadata in `public.resumes`, and issues short-lived signed URLs only after verifying ownership. The relevant endpoints are `POST /api/resumes`, `GET /api/resumes`, `GET /api/resumes/:id/view`, `GET /api/resumes/:id/download`, and `DELETE /api/resumes/:id`.
+Resume files are limited to 10 MB and PDF/DOCX, verified by extension, MIME type, and file signature. The API stores objects under a per-user path, keeps metadata in `public.resumes`, and issues short-lived signed URLs only after verifying ownership. `POST /api/resumes/:id/analyze` retrieves that user's private file, sends it to the authenticated Python AI service for text extraction and Groq skill extraction, and persists structured skills on the resume row. The relevant endpoints are `POST /api/resumes`, `GET /api/resumes`, `POST /api/resumes/:id/analyze`, `GET /api/resumes/:id/view`, `GET /api/resumes/:id/download`, and `DELETE /api/resumes/:id`.
+
+Resume text is sent server-to-server to Groq for analysis; the frontend never receives the Groq key. Scanned PDFs without a text layer are reported as unreadable (OCR is not included). Install the updated `python-backend/requirements.txt` before starting the Python service.
