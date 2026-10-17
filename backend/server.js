@@ -21,8 +21,11 @@ const app = express()
 app.set('trust proxy', 1)
 const port = Number(process.env.PORT || 3000)
 const jwtSecret = process.env.JWT_SECRET
-const frontendOrigins = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173')
-  .split(',').map((origin) => origin.trim()).filter(Boolean)
+const frontendOrigins = [...new Set([
+  'https://queue-t-pies.vercel.app',
+  ...(process.env.FRONTEND_ORIGIN || 'http://localhost:5173')
+    .split(',').map((origin) => origin.trim()).filter(Boolean),
+])]
 const cookieName = 'queue_session'
 const resumeBucket = 'resumes'
 const maxResumeBytes = 10 * 1024 * 1024
@@ -899,7 +902,10 @@ app.post('/api/resumes/:id/analyze', requireTrustedOrigin, requireSession, requi
     const agentUrl = (process.env.PYTHON_AGENT_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001')).replace(/\/$/, '')
     if (!agentUrl) return res.status(503).json({ error: 'Resume analysis service is not configured on the backend.' })
     const { data, error: downloadError } = await supabase.storage.from(resumeBucket).download(resume.storage_path)
-    if (downloadError || !data) return res.status(502).json({ error: 'Could not read the stored resume for analysis.' })
+    if (downloadError || !data) {
+      console.error(`Could not read stored resume for analysis; resume_id=${resumeId}; storage_status=${downloadError?.statusCode || 'unavailable'}`)
+      return res.status(502).json({ error: 'Could not read the stored resume for analysis.' })
+    }
 
     await pool.query(
       `UPDATE public.resumes SET skills_analysis_status='analyzing' WHERE id=$1 AND user_id=$2`,
@@ -922,13 +928,14 @@ app.post('/api/resumes/:id/analyze', requireTrustedOrigin, requireSession, requi
     } catch (error) {
       await pool.query(`UPDATE public.resumes SET skills_analysis_status='failed' WHERE id=$1 AND user_id=$2`, [resumeId, req.user.id])
       if (error.name === 'TimeoutError' || error.name === 'AbortError') return res.status(504).json({ error: 'Resume analysis took too long. Please retry.' })
+      console.error(`Could not reach resume analysis service; resume_id=${resumeId}; error_code=${error.cause?.code || error.code || error.name}`)
       return res.status(502).json({ error: 'Could not reach the resume analysis service. Please retry.' })
     }
     const payload = await response.json().catch(() => ({}))
     if (!response.ok || !Array.isArray(payload.skills)) {
       await pool.query(`UPDATE public.resumes SET skills_analysis_status='failed' WHERE id=$1 AND user_id=$2`, [resumeId, req.user.id])
       console.error(`Resume analysis failed; resume_id=${resumeId}; status=${response.status}; request_id=${payload.request_id || 'unavailable'}`)
-      const status = [401, 403, 429, 503, 504].includes(response.status) ? response.status : 502
+      const status = [401, 403, 422, 429, 503, 504].includes(response.status) ? response.status : 502
       return res.status(status).json({ error: typeof payload.detail === 'string' ? payload.detail : 'Could not analyze this resume. Please retry.' })
     }
 
